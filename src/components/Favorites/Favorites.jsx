@@ -1,6 +1,9 @@
-import React from 'react'
+import React from 'react';
 
-const Favorites = () => {
+const Favorites = ({ favoriteCities }) => {
+
+  console.log('favorite cities inside favorites ', favoriteCities);
+
   return (
     <div>Favorites</div>
   )
