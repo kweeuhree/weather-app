@@ -6,7 +6,7 @@ const Card = ({ currentCity }) => {
 
   return (
     <div className='card-container'>
-      <div className="temperature">i rendered</div>
+      <div className="temperature">{currentCity.location.name}</div>
     </div>
   )
 }

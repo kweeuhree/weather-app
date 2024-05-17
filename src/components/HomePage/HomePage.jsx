@@ -41,7 +41,7 @@ const HomePage = () => {
     const fetchCoordinates = async () => {
       try {
         const { latitude, longitude } = await getCoordinates();
-        console.log('fetched following coordinates: ', latitude, longitude);
+        // console.log('fetched following coordinates: ', latitude, longitude);
        setCoordinates({
         ...coordinates, 
         lat: latitude,
@@ -61,12 +61,13 @@ const HomePage = () => {
       try {
         const weatherData = await getWeather(coordinates.lat, coordinates.lon);
         setCurrentCity(weatherData);
+        console.log(weatherData, 'inside fetchWeather')
       } catch (error) {
         console.log('error inside fetchWeather ', error);
       }
+    }
     if(coordinates) {
       fetchWeather();
-    }
     }
 }, [coordinates]);
   
