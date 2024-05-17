@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useReducer } from 'react';
 import Card from '../Card/Card';
 import Button from '../Button/Button';
 import Favorites from '../Favorites/Favorites';
@@ -6,12 +6,40 @@ import { getCoordinates } from '../../utils/geolocation';
 import { buttons } from '../../models/data';
 
 
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'TOGGLEUNITS':
+      return state.units === 'f' ? {
+        ...state,
+        units: 'c'
+      } : {
+        ...state,
+        units: 'f'
+      };
+    case 'PICKCITY':
+      return <div>input</div>;
+    case 'addToFavorites':
+      return {
+        ...state,
+        addToFavorites: [...state.addToFavorites, action.payload.currentCity]
+      };
+    
+    default: 
+      return state; // return unchanged state by default
+    }
+};
+
 const HomePage = () => {
   const [currentCity, setCurrentCity] = useState(null);
   const [favoriteCities, setFavoriteCities] = useState([]);
   const [coordinates, setCoordinates] = useState({
     lat: '',
     lon: ''
+  });
+  const [state, dispatch] = useReducer(reducer, {
+    units: 'f',
+    pickCity: null,
+    addToFavorites: []
   });
 
   const api_key = import.meta.env.VITE_WEATHER_API;
@@ -47,6 +75,7 @@ const HomePage = () => {
         lat: latitude,
         lon: longitude
        });
+
        console.log('setting coordinates ', coordinates.lat, coordinates.lon);
       } catch (error) {
         console.error('failed inside fetchCoordinates:', error);
@@ -72,6 +101,9 @@ const HomePage = () => {
 }, [coordinates]);
   
   
+  const  handleClick = (event, action) => {
+    action();
+  };
   
 
 
@@ -84,17 +116,17 @@ const HomePage = () => {
 
     <section className="card-section">
               
-        <Card currentCity={currentCity} />
+        <Card currentCity={currentCity} units={state.units} />
 
         <div className="button-container">
           {/* toggle c/f */}
-          <Button type={buttons.cf.type} action={()=>handleClick(buttons.cf.action)} thisClass={buttons.cf.thisClass} /> 
+          <Button type={buttons.cf.type} onClick={()=>{dispatch({ type: 'TOGGLEUNITS' })}} thisClass={buttons.cf.thisClass} /> 
           {/* open input to change city */}
-          <Button type={buttons.pickCity.type} action={()=>handleClick(buttons.pickCity.action)} thisClass={buttons.pickCity.thisClass} />
+          <Button type={buttons.pickCity.type} onClick={()=>{dispatch({ type:' PICKCITY' })}} thisClass={buttons.pickCity.thisClass} />
           {/* add to favorites */}
-          <Button type={buttons.addToFavorites.type} action={()=>handleClick(buttons.addToFavorites.action)} thisClass={buttons.addToFavorites.thisClass} />
+          <Button type={buttons.addToFavorites.type} onClick={()=>{dispatch({ type:'addToFavorites' })}} thisClass={buttons.addToFavorites.thisClass} />
           {/* home */}
-          <Button type={buttons.home.type} action={()=>handleClick(buttons.home.action)} thisClass={buttons.home.thisClass} />
+          <Button type={buttons.home.type} thisClass={buttons.home.thisClass} />
         </div>
 
     </section>
