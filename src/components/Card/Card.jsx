@@ -5,7 +5,9 @@ const Card = ({ currentCity }) => {
   console.log('current city inside card: ', currentCity);
 
   return (
-    <div>Card</div>
+    <div className='card-container'>
+      <div className="temperature">i rendered</div>
+    </div>
   )
 }
 
