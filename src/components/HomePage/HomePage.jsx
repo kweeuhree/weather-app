@@ -8,17 +8,12 @@ import { getCoordinates } from '../../utils/geolocation';
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case 'TOGGLEUNITS':
-      return state.units === 'f' ? {
+    case 'TOGGLE_UNITS':
+      return {
         ...state,
-        units: 'c'
-      } : {
-        ...state,
-        units: 'f'
+        units: state.units === 'f' ? 'c' : 'f' // toggle temperatures
       };
-    case 'PICKCITY':
-      return <div>input</div>;
-    case 'addToFavorites':
+    case 'ADD_TO_FAVORITES':
       console.log('adding to favorites: ', action.payload);
       return {
         ...state,
@@ -30,7 +25,9 @@ const reducer = (state, action) => {
     }
 };
 
+
 const HomePage = () => {
+
   const [currentCity, setCurrentCity] = useState(null);
   const [favoriteCities, setFavoriteCities] = useState([]);
   const [coordinates, setCoordinates] = useState({
@@ -40,40 +37,22 @@ const HomePage = () => {
 
   const [state, dispatch] = useReducer(reducer, {
     units: 'f',
-    pickCity: null,
     addToFavorites: []
   });
 
+  const navigate = useNavigate();
+
   const api_key = import.meta.env.VITE_WEATHER_API;
   const api_query = `?key=${api_key}`;
+  const baseUrl = `http://api.weatherapi.com/v1/current.json`;
 
-  const getWeather = async (lat, lon) => {
-    const baseUrl = `http://api.weatherapi.com/v1/current.json`;
-    console.log('attempting fetching weather');
-    try {
-
-      const fetchAllUrl = `${baseUrl}${api_query}&q=${lat},${lon}`;
-      const response = await fetch(fetchAllUrl);
-
-      const data = await response.json();
-      console.log('data inside getWeather ', data);
-
-      return data;
-
-    } catch (error) {
-
-      console.log('error inside getWeather ', error);
-    }
-  };
-
-  // default display is location city
+  // default display is user location city, fetch once
   useEffect(() => {
     const fetchCoordinates = async () => {
       try {
         const { latitude, longitude } = await getCoordinates();
         // console.log('fetched following coordinates: ', latitude, longitude);
        setCoordinates({
-        ...coordinates, 
         lat: latitude,
         lon: longitude
        });
@@ -87,21 +66,38 @@ const HomePage = () => {
     fetchCoordinates();
   }, []);
 
+  // get weather once coordinates are fetched
   useEffect(() => {
     const fetchWeather = async () => {
+      if (!coordinates.lat || !coordinates.lon) return;
+
       try {
         const weatherData = await getWeather(coordinates.lat, coordinates.lon);
         setCurrentCity(weatherData);
-        console.log(weatherData, 'inside fetchWeather')
       } catch (error) {
-        console.log('error inside fetchWeather ', error);
+        console.error('Error fetching weather:', error);
       }
-    }
-    if(coordinates) {
-      fetchWeather();
-    }
-}, [coordinates]);
+    };
+    fetchWeather();
+  }, [coordinates]);
   
+
+  const getWeather = async (lat, lon) => {
+    console.log('attempting fetching weather');
+    const fetchAllUrl = `${baseUrl}${api_query}&q=${lat},${lon}`; // full url
+
+    // fetch and return data
+    try {
+      const response = await fetch(fetchAllUrl);
+      const data = await response.json();
+      console.log('data inside getWeather ', data);
+      return data;
+
+    } catch (error) {
+      console.log('error inside getWeather ', error);
+    }
+  };
+
 
   return (
     <main>
@@ -116,13 +112,11 @@ const HomePage = () => {
 
         <div className="button-container">
           {/* toggle c/f */}
-          <Button type={"C/F"} onClick={()=>{dispatch({ type: 'TOGGLEUNITS' })}} /> 
-          {/* open input to change city */}
-          <Button type={"Pick city"} onClick={()=>{dispatch({ type:' PICKCITY' })}} />
+          <Button type={"C/F"} onClick={()=>{dispatch({ type: 'TOGGLE_UNITS' })}} /> 
           {/* add to favorites */}
-          <Button type={"Add To Favorites"} onClick={()=>{dispatch({ type:'addToFavorites', payload: currentCity })}} />
+          <Button type={"Add To Favorites"} onClick={()=>{dispatch({ type:'ADD_TO_FAVORITES', payload: currentCity })}} />
           {/* home */}
-          <Button type={'home'} />
+          <Button type={'home'} onClick={() => navigate('/home')}/>
         </div>
 
     </section>
