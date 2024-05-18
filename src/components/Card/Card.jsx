@@ -29,7 +29,16 @@ const Card = ({ currentCity, units }) => {
     return <div>Loading...</div>;
   };
 
-  return currentCity ? loaded() : loading();
+  const main = () => {
+    try{
+      return currentCity === null ? loaded() : loading();
+    } catch (error) {
+      console.log(error);
+      loading();
+    };
+  };
+
+  return main();
 };
 
 export default Card;
