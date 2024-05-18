@@ -2,6 +2,7 @@ import React, { useState, useEffect, useReducer } from 'react';
 import Card from '../Card/Card';
 import Button from '../Button/Button';
 import Favorites from '../Favorites/Favorites';
+import Form from '../Form/Form';
 import { useNavigate } from 'react-router-dom';
 import { getCoordinates } from '../../utils/geolocation';
 
@@ -30,6 +31,7 @@ const HomePage = () => {
 
   const [currentCity, setCurrentCity] = useState(null);
   const [favoriteCities, setFavoriteCities] = useState([]);
+  const [userSearch, setUserSearch] = useState(null);
   const [coordinates, setCoordinates] = useState({
     lat: '',
     lon: ''
@@ -104,6 +106,10 @@ const HomePage = () => {
 
       <section className="favorite-section">
           <Favorites favoriteCities={favoriteCities} />
+      </section>
+
+      <section className='input-section'>       
+        <Form userSearch={userSearch} />
       </section>
 
     <section className="card-section">
