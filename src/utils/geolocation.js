@@ -13,8 +13,8 @@ const getUserLocation = () => {
   };
   
   const showPosition = (position) => {
-    const latitude = (position.coords.latitude).toFixed(2);
-    const longitude = (position.coords.longitude).toFixed(2);
+    const latitude = (position.coords.latitude).toFixed(4);
+    const longitude = (position.coords.longitude).toFixed(4);
     console.log("Latitude: " + latitude + " Longitude: " + longitude);
     return { latitude, longitude };
   };
