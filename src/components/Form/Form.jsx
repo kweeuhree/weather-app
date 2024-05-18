@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Form = ({ userSearch }) => {
+const Form = ({ setUserSearch }) => {
 
   const [formData, setFormData] = useState({searchTerm: ''});
   
@@ -12,8 +12,8 @@ const Form = ({ userSearch }) => {
   const handleSubmit = (event) => {
     // update props
     event.preventDefault();
-    userSearch = formData.searchTerm;
-    console.log(userSearch, ' inside handleSubmit in form component');
+    setUserSearch(formData.searchTerm);
+    console.log(formData.searchTerm, ' inside handleSubmit in form component');
     event.target.reset();
   };
 

@@ -31,7 +31,7 @@ const HomePage = () => {
 
   const [currentCity, setCurrentCity] = useState(null);
   const [favoriteCities, setFavoriteCities] = useState([]);
-  const [userSearch, setUserSearch] = useState(null);
+  const [userSearch, setUserSearch] = useState('');
   const [coordinates, setCoordinates] = useState({
     lat: '',
     lon: ''
@@ -48,7 +48,7 @@ const HomePage = () => {
   const api_query = `?key=${api_key}`;
   const baseUrl = `http://api.weatherapi.com/v1/current.json`;
 
-  // default display is user location city, fetch once
+// default display is user location city, fetch once
   useEffect(() => {
     const fetchCoordinates = async () => {
       try {
@@ -59,6 +59,7 @@ const HomePage = () => {
         lon: longitude
        });
 
+       getWeather();
        console.log('setting coordinates ', coordinates.lat, coordinates.lon);
       } catch (error) {
         console.error('failed inside fetchCoordinates:', error);
@@ -68,38 +69,75 @@ const HomePage = () => {
     fetchCoordinates();
   }, []);
 
-  // get weather once coordinates are fetched
+
+
+// get default weather once user coordinates are fetched
+  const getWeather = async () => {
+    if (!coordinates.lat || !coordinates.lon) return;
+
+    try {
+      const weatherData = await fetchWeather(coordinates.lat, coordinates.lon);
+      setCurrentCity(weatherData);
+    } catch (error) {
+      console.error('error inside getWeather:', error);
+    }
+  };
+
+  // function that handles calling fetch weather once user submits form---------------------------------------------
   useEffect(() => {
-    const fetchWeather = async () => {
-      if (!coordinates.lat || !coordinates.lon) return;
+    if (userSearch) {
+      getCity(userSearch);
+    }
+  }, [userSearch]);
 
-      try {
-        const weatherData = await getWeather(coordinates.lat, coordinates.lon);
-        setCurrentCity(weatherData);
-      } catch (error) {
-        console.error('Error fetching weather:', error);
-      }
-    };
-    fetchWeather();
-  }, [coordinates]);
-  
 
-  const getWeather = async (lat, lon) => {
+  const getCity = async (userSearch) => {
+    // if(!userSearch) return;
+
+    try {
+      const cityWeather = await fetchWeather(userSearch);
+      if(cityWeather) {
+        setCurrentCity(cityWeather);
+      } 
+     
+      
+    } catch(error) {
+      console.log('inside getCity ', error);
+    }
+
+  };
+
+  //fetch weather function
+  const fetchWeather = async (...args) => {
     console.log('attempting fetching weather');
-    const fetchAllUrl = `${baseUrl}${api_query}&q=${lat},${lon}`; // full url
 
+    let fetchAllUrl = '';
+    const [arg1, arg2] = args;
+
+    if ( args.length === 2 ) {
+      fetchAllUrl = `${baseUrl}${api_query}&q=${args[0]},${args[1]}`; // default location url
+    } else if ( args.length === 1 ) {
+      fetchAllUrl = `${baseUrl}${api_query}&q=${args[0]}`; // user search url
+    } else {
+      console.log('failed inside fetchWeather');
+      return;
+    }
+    
     // fetch and return data
     try {
       const response = await fetch(fetchAllUrl);
       const data = await response.json();
-      console.log('data inside getWeather ', data);
+      console.log('data inside fetchWeather ', data);
+      if(data.error) {
+        alert('invalid input');
+        return false;
+      }
       return data;
 
     } catch (error) {
-      console.log('error inside getWeather ', error);
+      console.log('error inside fetchWeather ', error);
     }
   };
-
 
   return (
     <main>
@@ -109,7 +147,7 @@ const HomePage = () => {
       </section>
 
       <section className='input-section'>       
-        <Form userSearch={userSearch} />
+        <Form setUserSearch={setUserSearch} />
       </section>
 
     <section className="card-section">
