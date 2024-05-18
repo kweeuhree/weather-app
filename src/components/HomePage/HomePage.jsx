@@ -2,8 +2,8 @@ import React, { useState, useEffect, useReducer } from 'react';
 import Card from '../Card/Card';
 import Button from '../Button/Button';
 import Favorites from '../Favorites/Favorites';
+import { useNavigate } from 'react-router-dom';
 import { getCoordinates } from '../../utils/geolocation';
-import { buttons } from '../../models/data';
 
 
 const reducer = (state, action) => {
@@ -19,9 +19,10 @@ const reducer = (state, action) => {
     case 'PICKCITY':
       return <div>input</div>;
     case 'addToFavorites':
+      console.log('adding to favorites: ', action.payload);
       return {
         ...state,
-        addToFavorites: [...state.addToFavorites, action.payload.currentCity]
+        addToFavorites: [...state.addToFavorites, action.payload.location.name]
       };
     
     default: 
@@ -36,6 +37,7 @@ const HomePage = () => {
     lat: '',
     lon: ''
   });
+
   const [state, dispatch] = useReducer(reducer, {
     units: 'f',
     pickCity: null,
@@ -100,12 +102,6 @@ const HomePage = () => {
     }
 }, [coordinates]);
   
-  
-  const  handleClick = (event, action) => {
-    action();
-  };
-  
-
 
   return (
     <main>
@@ -120,13 +116,13 @@ const HomePage = () => {
 
         <div className="button-container">
           {/* toggle c/f */}
-          <Button type={buttons.cf.type} onClick={()=>{dispatch({ type: 'TOGGLEUNITS' })}} thisClass={buttons.cf.thisClass} /> 
+          <Button type={"C/F"} onClick={()=>{dispatch({ type: 'TOGGLEUNITS' })}} /> 
           {/* open input to change city */}
-          <Button type={buttons.pickCity.type} onClick={()=>{dispatch({ type:' PICKCITY' })}} thisClass={buttons.pickCity.thisClass} />
+          <Button type={"Pick city"} onClick={()=>{dispatch({ type:' PICKCITY' })}} />
           {/* add to favorites */}
-          <Button type={buttons.addToFavorites.type} onClick={()=>{dispatch({ type:'addToFavorites' })}} thisClass={buttons.addToFavorites.thisClass} />
+          <Button type={"Add To Favorites"} onClick={()=>{dispatch({ type:'addToFavorites', payload: currentCity })}} />
           {/* home */}
-          <Button type={buttons.home.type} thisClass={buttons.home.thisClass} />
+          <Button type={'home'} />
         </div>
 
     </section>
