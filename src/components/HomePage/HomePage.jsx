@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useReducer } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { getCoordinates } from '../../utils/geolocation';
+import { IoHeartOutline } from "react-icons/io5";
 import Card from '../Card/Card';
 import Button from '../Button/Button';
 import Favorites from '../Favorites/Favorites';
 import Form from '../Form/Form';
-import { useNavigate } from 'react-router-dom';
-import { getCoordinates } from '../../utils/geolocation';
+
 
 
 const reducer = (state, action) => {
@@ -13,14 +15,7 @@ const reducer = (state, action) => {
       return {
         ...state,
         units: state.units === 'f' ? 'c' : 'f' // toggle temperatures
-      };
-    case 'ADD_TO_FAVORITES':
-      console.log('adding to favorites: ', action.payload);
-      return {
-        ...state,
-        addToFavorites: [...state.addToFavorites, action.payload.location.name]
-      };
-    
+      };  
     default: 
       return state; // return unchanged state by default
     }
@@ -32,14 +27,14 @@ const HomePage = () => {
   const [currentCity, setCurrentCity] = useState(null);
   const [favoriteCities, setFavoriteCities] = useState([]);
   const [userSearch, setUserSearch] = useState('');
+  const [heartColor, setHeartColor] = useState('black'); //set initial heart color to black
   const [coordinates, setCoordinates] = useState({
-    lat: '',
-    lon: ''
+    lat: null,
+    lon: null
   });
 
   const [state, dispatch] = useReducer(reducer, {
     units: 'f',
-    addToFavorites: []
   });
 
   const navigate = useNavigate();
@@ -48,32 +43,39 @@ const HomePage = () => {
   const api_query = `?key=${api_key}`;
   const baseUrl = `http://api.weatherapi.com/v1/current.json`;
 
+  useEffect(() => {
+    setHeartColor('black'); // on re-render, change color to black 
+  },[currentCity]);
+
 // default display is user location city, fetch once
   useEffect(() => {
-    const fetchCoordinates = async () => {
-      try {
-        const { latitude, longitude } = await getCoordinates();
-        // console.log('fetched following coordinates: ', latitude, longitude);
-       setCoordinates({
-        lat: latitude,
-        lon: longitude
-       });
-
-       getWeather();
-       console.log('setting coordinates ', coordinates.lat, coordinates.lon);
-      } catch (error) {
-        console.error('failed inside fetchCoordinates:', error);
-      }
-    };
-
     fetchCoordinates();
   }, []);
 
+  useEffect(() => {
+      getWeather(coordinates.lat, coordinates.lon);
+  }, [coordinates.lat, coordinates.lon]);
 
+  const fetchCoordinates = async () => {
+    try {
+      const response = await getCoordinates();
+      const { latitude, longitude } = await response;
+      console.log('fetched following coordinates: ', latitude, longitude);
+      setCoordinates(prevCoordinates => ({...prevCoordinates,
+        lat: latitude,
+        lon: longitude
+      }));
+      console.log('setting coordinates ', coordinates.lat, coordinates.lon);
+     
+    } catch (error) {
+      console.error('failed inside fetchCoordinates:', error);
+    }
+  };
+ 
 
 // get default weather once user coordinates are fetched
-  const getWeather = async () => {
-    if (!coordinates.lat || !coordinates.lon) return;
+  const getWeather = async (latitude, longitude) => {
+    if (!latitude || !longitude) return;
 
     try {
       const weatherData = await fetchWeather(coordinates.lat, coordinates.lon);
@@ -92,22 +94,17 @@ const HomePage = () => {
 
 
   const getCity = async (userSearch) => {
-    // if(!userSearch) return;
-
     try {
       const cityWeather = await fetchWeather(userSearch);
       if(cityWeather) {
         setCurrentCity(cityWeather);
       } 
-     
-      
     } catch(error) {
       console.log('inside getCity ', error);
     }
-
   };
 
-  //fetch weather function
+  // fetch weather function
   const fetchWeather = async (...args) => {
     console.log('attempting fetching weather');
 
@@ -139,13 +136,29 @@ const HomePage = () => {
     }
   };
 
+  const handleAddToFavs = () => {
+    const found = favoriteCities.find((item) => item.location.lat === currentCity.location.lat && item.location.lon === currentCity.location.lon);
+  
+    if (found) {
+      // remove currentCity from favoriteCities
+      setFavoriteCities(prevFavoriteCities => prevFavoriteCities.filter((item) => item !== currentCity));
+      setHeartColor('black');
+    } else {
+      // add currentCity to favoriteCities
+      setFavoriteCities(prevFavoriteCities => prevFavoriteCities.concat(currentCity));
+      setHeartColor('red');
+    }
+  };
+  
+  
+
   return (
     <main>
 
       <section className="favorite-section">
-          <Favorites favoriteCities={favoriteCities} />
+          <Favorites favoriteCities={favoriteCities} units={state.units} />
       </section>
-
+      
       <section className='input-section'>       
         <Form setUserSearch={setUserSearch} />
       </section>
@@ -158,9 +171,13 @@ const HomePage = () => {
           {/* toggle c/f */}
           <Button type={"C/F"} onClick={()=>{dispatch({ type: 'TOGGLE_UNITS' })}} /> 
           {/* add to favorites */}
-          <Button type={"Add To Favorites"} onClick={()=>{dispatch({ type:'ADD_TO_FAVORITES', payload: currentCity })}} />
+          <Button 
+            type={<span style={{ color: heartColor }}><IoHeartOutline /></span>}  
+            aria-label="Add To Favorite Locations" 
+            onClick={handleAddToFavs} 
+          />
           {/* home */}
-          <Button type={'home'} onClick={() => navigate('/home')}/>
+          {/* <Button type={'See Your Locations'} onClick={handleDisplayFavs}/> */}
         </div>
 
     </section>
