@@ -173,7 +173,10 @@ const HomePage = () => {
 
         <div className="button-container">
           {/* toggle c/f */}
-          <Button type={"C/F"} onClick={()=>{dispatch({ type: 'TOGGLE_UNITS' })}} /> 
+          <Button 
+            type={<><span style={{ color: state.units === 'c' ? 'red' : 'white' }}>C</span>/<span style={{ color: state.units === 'f' ? 'red' : 'white' }}>F</span></>} 
+            onClick={()=>{dispatch({ type: 'TOGGLE_UNITS' })}} 
+          /> 
           {/* add to favorites */}
           <Button 
             type={<span style={{ color: heartColor }}><IoHeartOutline /></span>}  
