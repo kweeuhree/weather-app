@@ -12,16 +12,17 @@ const toggleFavs = (city) => {
 }
   const citiesJSX = favoriteCities.map((item, index) => {
     return (
-      <div key={index}>{item.current.location.name} - {item.current.current[`feelslike_${units}`]} 
-      <span style={{color: 'red'}} onClick={()=>toggleFavs(item)}>
-        <IoHeartOutline />
-      </span>
+      <div className='fav-location' key={index}>
+        {item.current.location.name} - {item.current.current[`feelslike_${units}`]} 
+          <span style={{color: 'red'}} onClick={()=>toggleFavs(item)}>
+            <IoHeartOutline />
+          </span>
     </div>
     )
   })
 
   return (
-    <div>{citiesJSX}</div>
+    <div className='fav-location-container'>{citiesJSX}</div>
   )
 }
 

@@ -12,10 +12,12 @@ section {
 
 .favorite-section {
     border: 1px solid black;
+    width: 30%;
 }
 
 .card-section {
     border: 1px solid blue;
+    width: 70%;
     flex-direction: column;
 }
 

@@ -1,0 +1,12 @@
+.fav-location-container {
+    width: 100%;
+}
+
+.fav-location {
+    border: solid salmon;
+    padding: 5%;
+    padding-inline-end: 10%;
+    display: flex;
+    justify-content: space-between;
+   
+}
