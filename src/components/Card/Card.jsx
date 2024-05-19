@@ -7,18 +7,20 @@ const Card = ({ currentCity, units }) => {
     try {
       return (
         <div className='card-container'>
-          {currentCity && currentCity.location && (
+          {currentCity.current && currentCity.current.location && (
             <>
-              <div className="name">{currentCity.location.name}</div>
+              <div className="name">{currentCity.current.location.name}</div>
 
               <div className="temperature">
-              {currentCity.current[`feelslike_${units}`]}
+              {currentCity.current.current[`feelslike_${units}`]}
 
               </div>
 
             </>
           )}
         </div>
+
+        
       );
     } catch (error) {
       console.log('error inside loaded ', error);

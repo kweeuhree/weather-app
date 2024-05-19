@@ -23,7 +23,10 @@ const reducer = (state, action) => {
 
 const HomePage = () => {
 
-  const [currentCity, setCurrentCity] = useState(null);
+  const [currentCity, setCurrentCity] = useState({
+    current: null,
+    forecast: null
+  });
   const [favoriteCities, setFavoriteCities] = useState([]);
   const [userSearch, setUserSearch] = useState('');
   const [heartColor, setHeartColor] = useState('black'); //set initial heart color to black
@@ -32,9 +35,7 @@ const HomePage = () => {
     lon: null
   });
 
-  const [state, dispatch] = useReducer(reducer, {
-    units: 'f',
-  });
+  const [state, dispatch] = useReducer(reducer, {units: 'f'});
 
   const api_key = import.meta.env.VITE_WEATHER_API;
   const api_query = `?key=${api_key}`;
@@ -76,14 +77,20 @@ const HomePage = () => {
   const fetchWeatherData = async (location) => {
     try {
       let weatherData;
+      let forecastData;
       if (location.lat && location.lon) {
         weatherData = await fetchWeather(baseUrl, location.lat, location.lon);
+        forecastData = await fetchWeather(forecastUrl, location.lat, location.lon);
       } else if (location.city) {
         weatherData = await fetchWeather(baseUrl, location.city);
+        forecastData = await fetchWeather(forecastUrl, location.city);
       }
 
-      if (weatherData) {
-        setCurrentCity(weatherData);
+      if (weatherData && forecastData) {
+        setCurrentCity({
+          current: weatherData,
+          forecast:forecastData
+        });
       }
     } catch (error) {
       console.error('error inside fetchWeatherData:', error);
@@ -123,19 +130,19 @@ const HomePage = () => {
   };
 
   const handleAddToFavs = () => {
-    if(favoriteCities.length === 5) {
-      alert('cant add any more locations');
+    if (favoriteCities.length === 5) {
+      alert('Can’t add any more locations');
       return;
     }
-    const found = favoriteCities.find((item) => item.location.lat === currentCity.location.lat && item.location.lon === currentCity.location.lon);
-  
+    const found = favoriteCities.find(
+      item => item.location.lat === currentCity.location.lat && item.location.lon === currentCity.location.lon
+    );
+
     if (found) {
-      // remove currentCity from favoriteCities
-      setFavoriteCities(prevFavoriteCities => prevFavoriteCities.filter((item) => item !== currentCity));
+      setFavoriteCities(prevFavoriteCities => prevFavoriteCities.filter(item => item.location.lat !== currentCity.location.lat || item.location.lon !== currentCity.location.lon));
       setHeartColor('black');
     } else {
-      // add currentCity to favoriteCities
-      setFavoriteCities(prevFavoriteCities => prevFavoriteCities.concat(currentCity));
+      setFavoriteCities(prevFavoriteCities => [...prevFavoriteCities, currentCity]);
       setHeartColor('red');
     }
   };

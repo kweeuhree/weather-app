@@ -3,15 +3,15 @@ import { IoHeartOutline } from "react-icons/io5";
 
 
 const Favorites = ({ setFavoriteCities, favoriteCities, units }) => {
-
+  console.log('favorite cities inside favorites ', favoriteCities);
 const toggleFavs = (city) => {
   setFavoriteCities(prevFavoriteCities => prevFavoriteCities.filter((item) => item.location.name !== city.location.name));
 
-  console.log('favorite cities inside favorites ', favoriteCities);
+ 
 }
   const citiesJSX = favoriteCities.map((item, index) => {
     return (
-      <div key={index}>{item.location.name} - {item.current[`feelslike_${units}`]} 
+      <div key={index}>{item.current.location.name} - {item.current.current[`feelslike_${units}`]} 
       <span style={{color: 'red'}} onClick={()=>toggleFavs(item)}>
         <IoHeartOutline />
       </span>

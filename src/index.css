@@ -3,9 +3,8 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background: rgb(142,177,213);
+  background: linear-gradient(30deg, rgba(142,177,213,1) 0%, rgba(130,162,215,1) 17%, rgba(138,170,232,1) 33%, rgba(174,200,255,1) 61%, rgba(201,218,255,1) 97%, rgba(214,229,255,1) 100%);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -42,7 +41,8 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background: rgb(53,53,54);
+background: linear-gradient(146deg, rgba(53,53,54,0.26) 0%, rgba(239,244,255,0.1) 98%);
   cursor: pointer;
   transition: border-color 0.25s;
 }
