@@ -5,7 +5,7 @@ import { IoHeartOutline } from "react-icons/io5";
 const Favorites = ({ setFavoriteCities, favoriteCities, units }) => {
   console.log('favorite cities inside favorites ', favoriteCities);
 const toggleFavs = (city) => {
-  setFavoriteCities(prevFavoriteCities => prevFavoriteCities.filter((item) => item.location.name !== city.location.name));
+  setFavoriteCities(prevFavoriteCities => prevFavoriteCities.filter((item) => item.current.location.name !== city.current.location.name));
 
  
 }

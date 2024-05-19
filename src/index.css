@@ -42,7 +42,7 @@ button {
   font-weight: 500;
   font-family: inherit;
   background: rgb(53,53,54);
-background: linear-gradient(146deg, rgba(53,53,54,0.26) 0%, rgba(239,244,255,0.1) 98%);
+  background: linear-gradient(146deg, rgba(53,53,54,0.26) 0%, rgba(239,244,255,0.1) 98%);
   cursor: pointer;
   transition: border-color 0.25s;
 }

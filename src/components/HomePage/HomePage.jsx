@@ -135,11 +135,11 @@ const HomePage = () => {
       return;
     }
     const found = favoriteCities.find(
-      item => item.location.lat === currentCity.location.lat && item.location.lon === currentCity.location.lon
+      item => item.current.location.lat === currentCity.current.location.lat && item.current.location.lon === currentCity.current.location.lon
     );
 
     if (found) {
-      setFavoriteCities(prevFavoriteCities => prevFavoriteCities.filter(item => item.location.lat !== currentCity.location.lat || item.location.lon !== currentCity.location.lon));
+      setFavoriteCities(prevFavoriteCities => prevFavoriteCities.filter(item => item.current.location.lat !== currentCity.current.location.lat || item.current.location.lon !== currentCity.current.location.lon));
       setHeartColor('black');
     } else {
       setFavoriteCities(prevFavoriteCities => [...prevFavoriteCities, currentCity]);
