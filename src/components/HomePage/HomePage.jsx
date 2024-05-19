@@ -137,6 +137,10 @@ const HomePage = () => {
   };
 
   const handleAddToFavs = () => {
+    if(favoriteCities.length === 3) {
+      alert('cant add any more locations');
+      return;
+    }
     const found = favoriteCities.find((item) => item.location.lat === currentCity.location.lat && item.location.lon === currentCity.location.lon);
   
     if (found) {
@@ -156,7 +160,7 @@ const HomePage = () => {
     <main>
 
       <section className="favorite-section">
-          <Favorites favoriteCities={favoriteCities} units={state.units} />
+          <Favorites heartColor={heartColor} setHeartColor={setHeartColor} currentCity={currentCity} setFavoriteCities={setFavoriteCities} favoriteCities={favoriteCities} units={state.units} />
       </section>
       
       <section className='input-section'>       
