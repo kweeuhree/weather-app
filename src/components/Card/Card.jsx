@@ -1,4 +1,5 @@
 import React from 'react';
+import './CardStyle.css';
 
 const Card = ({ currentCity, units }) => {
   console.log('current units inside card: ', units);

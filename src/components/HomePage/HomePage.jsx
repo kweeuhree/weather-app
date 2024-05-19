@@ -5,6 +5,7 @@ import Card from '../Card/Card';
 import Button from '../Button/Button';
 import Favorites from '../Favorites/Favorites';
 import Form from '../Form/Form';
+import './HomePageStyle.css';
 
 
 

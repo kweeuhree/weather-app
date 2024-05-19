@@ -1,4 +1,5 @@
 import React from 'react';
+import './FavoritesStyle.css';
 import { IoHeartOutline } from "react-icons/io5";
 
 
