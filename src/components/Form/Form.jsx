@@ -19,7 +19,7 @@ const Form = ({ setUserSearch }) => {
 
   return (
       <form onSubmit={handleSubmit}>
-          <input type="text" onChange={handleChange} placeholder='find a city'/>
+          <input type="text" onChange={handleChange} placeholder='enter city or zip code'/>
           <input type="submit" value="Find" />
        </form>
   )

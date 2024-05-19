@@ -42,79 +42,68 @@ const HomePage = () => {
   const api_key = import.meta.env.VITE_WEATHER_API;
   const api_query = `?key=${api_key}`;
   const baseUrl = `http://api.weatherapi.com/v1/current.json`;
+  const forecastUrl = `http://api.weatherapi.com/v1//forecast.json`;
 
   useEffect(() => {
     setHeartColor('black'); // on re-render, change color to black 
   },[currentCity]);
 
-// default display is user location city, fetch once
-  useEffect(() => {
+   // default display is user location city, fetch once
+   useEffect(() => {
     fetchCoordinates();
   }, []);
 
   useEffect(() => {
-      getWeather(coordinates.lat, coordinates.lon);
-  }, [coordinates.lat, coordinates.lon]);
+    if (coordinates.lat && coordinates.lon) {
+      fetchWeatherData({ lat: coordinates.lat, lon: coordinates.lon });
+    }
+  }, [coordinates]);
+
+  useEffect(() => {
+    if (userSearch) {
+      fetchWeatherData({ city: userSearch });
+    }
+  }, [userSearch]);
 
   const fetchCoordinates = async () => {
     try {
       const response = await getCoordinates();
       const { latitude, longitude } = await response;
       console.log('fetched following coordinates: ', latitude, longitude);
-      setCoordinates(prevCoordinates => ({...prevCoordinates,
-        lat: latitude,
-        lon: longitude
-      }));
-      console.log('setting coordinates ', coordinates.lat, coordinates.lon);
-     
+      setCoordinates({ lat: latitude, lon: longitude });
     } catch (error) {
       console.error('failed inside fetchCoordinates:', error);
     }
   };
- 
 
-// get default weather once user coordinates are fetched
-  const getWeather = async (latitude, longitude) => {
-    if (!latitude || !longitude) return;
-
+  const fetchWeatherData = async (location) => {
     try {
-      const weatherData = await fetchWeather(coordinates.lat, coordinates.lon);
-      setCurrentCity(weatherData);
+      let weatherData;
+      if (location.lat && location.lon) {
+        weatherData = await fetchWeather(baseUrl, location.lat, location.lon);
+      } else if (location.city) {
+        weatherData = await fetchWeather(baseUrl, location.city);
+      }
+
+      if (weatherData) {
+        setCurrentCity(weatherData);
+      }
     } catch (error) {
-      console.error('error inside getWeather:', error);
-    }
-  };
-
-  // function that handles calling fetch weather once user submits form---------------------------------------------
-  useEffect(() => {
-    if (userSearch) {
-      getCity(userSearch);
-    }
-  }, [userSearch]);
-
-
-  const getCity = async (userSearch) => {
-    try {
-      const cityWeather = await fetchWeather(userSearch);
-      if(cityWeather) {
-        setCurrentCity(cityWeather);
-      } 
-    } catch(error) {
-      console.log('inside getCity ', error);
+      console.error('error inside fetchWeatherData:', error);
     }
   };
 
   // fetch weather function
-  const fetchWeather = async (...args) => {
+  const fetchWeather = async (url, ...args) => {
     console.log('attempting fetching weather');
 
     let fetchAllUrl = '';
     const [arg1, arg2] = args;
 
     if ( args.length === 2 ) {
-      fetchAllUrl = `${baseUrl}${api_query}&q=${args[0]},${args[1]}`; // default location url
+      fetchAllUrl = `${url}${api_query}&q=${args[0]},${args[1]}`; // default location url
     } else if ( args.length === 1 ) {
-      fetchAllUrl = `${baseUrl}${api_query}&q=${args[0]}`; // user search url
+      fetchAllUrl = `${url}${api_query}&q=${args[0]}`; // user search url
     } else {
       console.log('failed inside fetchWeather');
       return;
@@ -173,7 +162,11 @@ const HomePage = () => {
 
         <div className="button-container">
           {/* toggle c/f */}
-          <Button type={"C/F"} onClick={()=>{dispatch({ type: 'TOGGLE_UNITS' })}} /> 
+          <Button 
+            type={<><span style={{color: state.units === 'f' ? 'red' : 'white'}}>F</span>/<span 
+            style={{color: state.units === 'c' ? 'red' : 'white'}}>C</span></>} 
+            onClick={()=>{dispatch({ type: 'TOGGLE_UNITS' })}} 
+          /> 
           {/* add to favorites */}
           <Button 
             type={<span style={{ color: heartColor }}><IoHeartOutline /></span>}  
