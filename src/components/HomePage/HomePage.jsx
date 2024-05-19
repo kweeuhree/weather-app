@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useReducer } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { getCoordinates } from '../../utils/geolocation';
 import { IoHeartOutline } from "react-icons/io5";
 import Card from '../Card/Card';
@@ -36,8 +35,6 @@ const HomePage = () => {
   const [state, dispatch] = useReducer(reducer, {
     units: 'f',
   });
-
-  const navigate = useNavigate();
 
   const api_key = import.meta.env.VITE_WEATHER_API;
   const api_query = `?key=${api_key}`;
