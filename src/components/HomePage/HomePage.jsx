@@ -156,32 +156,35 @@ const HomePage = () => {
       <section className="favorite-section">
           <Favorites heartColor={heartColor} setHeartColor={setHeartColor} currentCity={currentCity} setFavoriteCities={setFavoriteCities} favoriteCities={favoriteCities} units={state.units} />
       </section>
-      
-      <section className='input-section'>       
-        <Form setUserSearch={setUserSearch} />
-      </section>
 
-    <section className="card-section">
+
+      {/* card section */}
+  <section className="card-section">
               
-        <Card currentCity={currentCity} units={state.units} />
+      <Card currentCity={currentCity} units={state.units} />
 
-        <div className="button-container">
-          {/* toggle c/f */}
-          <Button 
-            type={<><span style={{color: state.units === 'f' ? 'red' : 'white'}}>F</span>/<span 
-            style={{color: state.units === 'c' ? 'red' : 'white'}}>C</span></>} 
-            onClick={()=>{dispatch({ type: 'TOGGLE_UNITS' })}} 
-          /> 
-          {/* add to favorites */}
-          <Button 
-            type={<span style={{ color: heartColor }}><IoHeartOutline /></span>}  
-            aria-label="Add To Favorite Locations" 
-            onClick={handleAddToFavs} 
-          />
-          {/* home */}
-          {/* <Button type={'See Your Locations'} onClick={handleDisplayFavs}/> */}
+      <div className="form-button-container">
+          
+          <section className='input-section'>       
+             <Form setUserSearch={setUserSearch} />
+          </section>
+
+            {/* toggle c/f */}
+            <Button 
+              type={<><span style={{color: state.units === 'f' ? 'red' : 'white'}}>F</span>/<span 
+              style={{color: state.units === 'c' ? 'red' : 'white'}}>C</span></>} 
+              onClick={()=>{dispatch({ type: 'TOGGLE_UNITS' })}} 
+            /> 
+            {/* add to favorites */}
+            <Button 
+              type={<span style={{ color: heartColor }}><IoHeartOutline /></span>}  
+              aria-label="Add To Favorite Locations" 
+              onClick={handleAddToFavs} 
+            />
+            {/* home */}
+            {/* <Button type={'See Your Locations'} onClick={handleDisplayFavs}/> */}
         </div>
-
+        {/* end of card section */}
     </section>
 
     </main>

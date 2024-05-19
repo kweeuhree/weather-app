@@ -1,0 +1,28 @@
+main {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid red;
+}
+
+section {
+    display: flex;
+    place-items: center;
+}
+
+.favorite-section {
+    border: 1px solid black;
+}
+
+.card-section {
+    border: 1px solid blue;
+    flex-direction: column;
+}
+
+.input-section {
+    border: 1px solid green;
+}
+
+.form-button-container {
+    border: 1px solid purple;
+}
