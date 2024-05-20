@@ -43,12 +43,12 @@ const Card = ({ currentCity, units }) => {
         <div className='sunset-sunrise-container'>
 
           <div className="sun-section"> 
-              <div>rise:{forecastday[0].astro.sunrise}</div>
+              <div>rise: {forecastday[0].astro.sunrise}</div>
               <GiSunrise className="sun-icon" />
           </div>
 
           <div className="sun-section">
-            <div>set:{forecastday[0].astro.sunset}</div>
+            <div>set: {forecastday[0].astro.sunset}</div>
             <GiSunrise className="sun-icon" />
           </div>
         </div>

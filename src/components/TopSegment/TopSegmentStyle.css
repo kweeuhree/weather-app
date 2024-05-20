@@ -1,13 +1,16 @@
 .top-segment {
     display: flex;
     height: 25vh;
+    margin-inline-start: 10%;
+    margin-inline-end: 10%;
 }
 
 .top-section {
+    padding: 8%;
     display: flex;
     text-align: center;
     justify-content: space-evenly;
-    border: solid purple;
+    /* border: solid purple; */
     width: 100%;
 }
 
@@ -18,5 +21,15 @@
 .left {
     display: flex;
     flex-direction: column;
+}
+
+.right {
+    text-align: start;
+}
+
+.current-condition-icon {
+    display: flex;
+    /* border: solid red; */
+    padding: 15%;
 }
 

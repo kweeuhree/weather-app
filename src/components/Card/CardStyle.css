@@ -16,7 +16,7 @@
 .bottom-section {
     display: flex;
     flex-direction: column;
-    border: 1px solid lime;
+    /* border: 1px solid lime; */
 }
 
 /* left bottom section */
@@ -75,6 +75,10 @@
 .sun-section {
     /* border: 1px solid yellow; */
     padding: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .sun-icon {
@@ -85,7 +89,7 @@
 
 .right-bottom-section {
     justify-content:flex-end;
-    border: 1px solid purple;
+    /* border: 1px solid purple; */
     width:  100%;
 }
 
