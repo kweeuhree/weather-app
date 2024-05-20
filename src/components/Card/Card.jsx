@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { GiSunrise, GiSunset  } from "react-icons/gi";
 import TopSegment from '../TopSegment/TopSegment';
 import './CardStyle.css';
 
@@ -26,23 +27,31 @@ const Card = ({ currentCity, units }) => {
       ))
 
       const dailyJSX = (
-        <li>
-          <div>{forecastday[0].day[`avgtemp_${units}`]}</div>
-          <div>humidity:{forecastday[0].day.avghumidity}</div>
-          <div>
+        <div className='daily'>
+        <div className='daily-text'>         
+         <div>average daytime temp: {forecastday[0].day[`avgtemp_${units}`]}</div>
+          <div>humidity: {forecastday[0].day.avghumidity}</div>
+        </div>
+        
+        <div className='daily-icon'>
           <img src={forecastday[0].day.condition.icon} alt={forecastday[0].day.condition.text} />
-          </div>
-        </li>
+        </div>
+        </div>
       );
 
       const sunriseSunsetJSX = (
-        <li>
-          <div>rise:{forecastday[0].astro.sunrise}</div>
-          <div>set:{forecastday[0].astro.sunset}</div>
-          <div>
-          <img src={forecastday[0].day.condition.icon} alt={forecastday[0].day.condition.text} />
+        <div className='sunset-sunrise-container'>
+
+          <div className="sun-section"> 
+              <div>rise:{forecastday[0].astro.sunrise}</div>
+              <GiSunrise className="sun-icon" />
           </div>
-        </li>
+
+          <div className="sun-section">
+            <div>set:{forecastday[0].astro.sunset}</div>
+            <GiSunrise className="sun-icon" />
+          </div>
+        </div>
       );
       
 
@@ -58,30 +67,34 @@ const Card = ({ currentCity, units }) => {
 
               <div className="bottom-segment">
                   {/* bottom section left */}
+                  
                 <div className='bottom-section left-bottom-section'>
-                  <div className="horizontal">
+        
                     <div className="hourly linear-gradient">
                       <ul>{hourlyJSX}</ul>
-                      </div>
-                  </div>
-                  <div className="vertical">
-                    <div className="daily linear-gradient">
+                    </div>
+               
+  
+                    <div className="linear-gradient">
                     <ul>{dailyJSX}</ul>
                     </div>
-                    <div className="sun-buttons-container">
-                      <div className="sunset-sunrise-container linear-gradient">{sunriseSunsetJSX}</div>
-                      <div className="uv-aiq-container">
-                        <div className="square-card linear-gradient uv">uv:{currentWeather.uv}</div>
-                        <div className="square-card linear-gradient aiq">air quality: {forecastday[0].day.air_quality}</div>
-                      </div>
+
+                    <div className="sun-container">
+                      <div className="linear-gradient">{sunriseSunsetJSX}</div>
+                    
                     </div>
-                  </div>
+    
 
                 </div>
 
                   {/* bottom section right */}
                 <div className='bottom-section right-bottom-section'>
-                  <div className="wind-rain-container">
+                  
+                  <div className="squares-container">
+
+                    <div className="square-card linear-gradient uv">uv:{currentWeather.uv}</div>
+                    <div className="square-card linear-gradient aiq">air quality: {forecastday[0].day.air_quality}</div>
+        
                     <div className="square-card linear-gradient wind">wind direction: {currentWeather.wind_dir}</div>
                     <div className="square-card linear-gradient rain">rain, inch: {currentWeather.precip_in}</div>
                   </div>

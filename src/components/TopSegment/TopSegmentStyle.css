@@ -1,5 +1,6 @@
 .top-segment {
     display: flex;
+    height: 25vh;
 }
 
 .top-section {

@@ -29,7 +29,7 @@ section {
 .form-button-container {
     border: 1px solid purple;
     position: absolute;
-    right:0;
-    top:25%;
+    right:1%;
+    top:39%;
     width: 43%;
 }

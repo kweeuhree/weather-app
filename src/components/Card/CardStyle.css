@@ -8,21 +8,6 @@
     flex-wrap: wrap;
 }
 
-.hourly {
-    border: 1px solid blue;
-    overflow: auto;
-    width: 30vw;
-}
-
-.hourly ul {
-    display: flex;
-    border: 1px solid orange;
-}
-
-.hourly ul > li {
-    list-style-type: none;
-}
-
 /* bottom segment */
 .bottom-segment {
     /* border: 1px solid yellow; */
@@ -31,48 +16,98 @@
 .bottom-section {
     display: flex;
     flex-direction: column;
-    /* border: 1px solid lime; */
+    border: 1px solid lime;
 }
+
+/* left bottom section */
+
+.left-bottom-section {
+    max-width:  50%;
+    padding: 2%;
+    justify-content: space-around;
+}
+
+.left-bottom-section > div {
+    margin-bottom: 2%;
+    height: 30%;
+}
+
+/* hourly forecast */
+
+.hourly {
+    border: 1px solid rgb(58, 136, 238);
+    scrollbar-width: thin;
+    scrollbar-color: #95abe9 #acc6ff;
+    overflow: auto;
+    scroll-behavior: smooth;  
+}
+
+.hourly ul {
+    display: flex;
+    margin: 0 auto;
+}
+
+.hourly ul > li {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 2%;
+}
+
+/* daily forecast */
+
+.daily {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+/*  */
+
+.sunset-sunrise-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.sun-section {
+    /* border: 1px solid yellow; */
+    padding: 5%;
+}
+
+.sun-icon {
+    font-size: 4em;
+}
+
+/* right bottom section */
 
 .right-bottom-section {
     justify-content:flex-end;
+    border: 1px solid purple;
+    width:  100%;
 }
 
-.vertical {
+.squares-container {
     display: flex;
-    border: 1px solid brown;
+    flex-wrap: wrap;
+    /* border: solid yellow; */
+    height: 30vh;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 3%;
 }
-
-.daily {
-    border: solid blue;
-    display: flex;
-    flex-direction: column;
-    gap: 5%;
-}
-
-.sun-buttons-container {
-    display: flex;
-    flex-direction: column;
-}
-
-.uv-aiq-container, .wind-rain-container {
-    display: flex;
-}
-
-/* .wind-rain-container {
-
-} */
 
 /* square card */
 .square-card {
-
-    width:10vw;
-    height: 10vw;
-    margin:1%;
-    margin-inline-start: 5%;
-    margin-block-end: 3%;
+    width:42%;
+    height: 40%;
+    margin-inline-start: 3%;
+    margin-inline-end: 1%;
     display: flex;
-    place-items: center;
+    align-items: center;
+    justify-content: center;
     text-align: center;
 }
 
