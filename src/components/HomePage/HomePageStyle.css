@@ -22,14 +22,14 @@ section {
     position: relative;
 }
 
-.input-section {
-    border: 1px solid green;
-}
-
 .form-button-container {
     border: 1px solid purple;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     position: absolute;
-    right:1%;
+    right:0;
     top:39%;
     width: 43%;
+    padding: 2%;
 }

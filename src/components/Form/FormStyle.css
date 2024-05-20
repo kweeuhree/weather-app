@@ -1,0 +1,22 @@
+.button-container {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    /* border: 1px solid orange; */
+    margin-block-start: 5%;
+}
+
+input {
+    border-radius: 0.5em;
+    border: 1px solid transparent;
+}
+
+.input-input {
+    outline: none;
+}
+
+/* .my-form {
+    border: 1px solid blue;
+    width: 10vw;
+    justify-content: space-between;
+} */

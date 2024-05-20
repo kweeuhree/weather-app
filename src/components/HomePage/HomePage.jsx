@@ -169,10 +169,11 @@ const HomePage = () => {
              <Form setUserSearch={setUserSearch} />
           </section>
 
+        <div className="button-container">
             {/* toggle c/f */}
             <Button 
-              type={<><span style={{color: state.units === 'f' ? 'red' : 'white'}}>F</span>/<span 
-              style={{color: state.units === 'c' ? 'red' : 'white'}}>C</span></>} 
+              type={<><span style={{color: state.units === 'f' ? 'white' : 'black'}}>F</span>/<span 
+              style={{color: state.units === 'c' ? 'white' : 'black'}}>C</span></>} 
               onClick={()=>{dispatch({ type: 'TOGGLE_UNITS' })}} 
             /> 
             {/* add to favorites */}
@@ -181,6 +182,8 @@ const HomePage = () => {
               aria-label="Add To Favorite Locations" 
               onClick={handleAddToFavs} 
             />
+
+        </div>
             {/* home */}
             {/* <Button type={'See Your Locations'} onClick={handleDisplayFavs}/> */}
         </div>
