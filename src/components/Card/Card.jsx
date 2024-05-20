@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import TopSegment from '../TopSegment/TopSegment';
 import './CardStyle.css';
 
 const Card = ({ currentCity, units }) => {
@@ -51,25 +52,7 @@ const Card = ({ currentCity, units }) => {
             <div className='card'>
 
                 {/* top section */}
-              <div className="top-segment">
-
-                      {/* top section left */}
-                  <div className="top-section left">
-                        <div className="name">{location.name}</div>
-                        <div className="temperature">
-                        {currentWeather[`feelslike_${units}`]}
-                        </div>
-                        <div className='current-condition'>{currentWeather.condition.text}</div>
-                  </div>
-                       
-                       {/* top section right */}
-                  <div className="top-section right">
-                    <div className="current-condition-icon">
-                      <img src={currentWeather.condition.icon} alt={currentWeather.condition.text} />
-                    </div>
-                  </div>
-
-              </div>
+                <TopSegment units={units} location={location} currentWeather={currentWeather} />
 
                 {/* bottom section */}
 
