@@ -19,6 +19,7 @@ section {
     border: 1px solid blue;
     width: 70%;
     flex-direction: column;
+    position: relative;
 }
 
 .input-section {
@@ -27,4 +28,8 @@ section {
 
 .form-button-container {
     border: 1px solid purple;
+    position: absolute;
+    right:0;
+    top:25%;
+    width: 43%;
 }

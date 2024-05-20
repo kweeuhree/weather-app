@@ -25,5 +25,61 @@
 
 /* bottom segment */
 .bottom-segment {
-    border: 1px solid yellow;
+    /* border: 1px solid yellow; */
+    display: flex;
+}
+.bottom-section {
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid lime; */
+}
+
+.right-bottom-section {
+    justify-content:flex-end;
+}
+
+.vertical {
+    display: flex;
+    border: 1px solid brown;
+}
+
+.daily {
+    border: solid blue;
+    display: flex;
+    flex-direction: column;
+    gap: 5%;
+}
+
+.sun-buttons-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.uv-aiq-container, .wind-rain-container {
+    display: flex;
+}
+
+/* .wind-rain-container {
+
+} */
+
+/* square card */
+.square-card {
+
+    width:10vw;
+    height: 10vw;
+    margin:1%;
+    margin-inline-start: 5%;
+    margin-block-end: 3%;
+    display: flex;
+    place-items: center;
+    text-align: center;
+}
+
+.linear-gradient {
+    border: 1px solid rgba(100, 100, 100, 0.37);
+    border-radius: 1em;
+    box-shadow: 6px 10px 9px -6px rgba(30, 50, 117, 0.411);
+    background: rgb(53,53,54);
+    background: linear-gradient(146deg, rgba(53,53,54,0.26) 0%, rgba(239,244,255,0.1) 98%);
 }

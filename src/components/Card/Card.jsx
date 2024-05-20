@@ -58,21 +58,21 @@ const Card = ({ currentCity, units }) => {
 
               <div className="bottom-segment">
                   {/* bottom section left */}
-                <div className='bottom-section left'>
+                <div className='bottom-section left-bottom-section'>
                   <div className="horizontal">
-                    <div className="hourly">
+                    <div className="hourly linear-gradient">
                       <ul>{hourlyJSX}</ul>
                       </div>
                   </div>
                   <div className="vertical">
-                    <div className="daily">
+                    <div className="daily linear-gradient">
                     <ul>{dailyJSX}</ul>
                     </div>
                     <div className="sun-buttons-container">
-                      <div className="sunset-sunrise-container">{sunriseSunsetJSX}</div>
+                      <div className="sunset-sunrise-container linear-gradient">{sunriseSunsetJSX}</div>
                       <div className="uv-aiq-container">
-                        <div className="square-card uv">uv:{currentWeather.uv}</div>
-                        <div className="square-card aiq">air quality: {forecastday[0].day.air_quality}</div>
+                        <div className="square-card linear-gradient uv">uv:{currentWeather.uv}</div>
+                        <div className="square-card linear-gradient aiq">air quality: {forecastday[0].day.air_quality}</div>
                       </div>
                     </div>
                   </div>
@@ -80,10 +80,10 @@ const Card = ({ currentCity, units }) => {
                 </div>
 
                   {/* bottom section right */}
-                <div className='bottom-section right'>
+                <div className='bottom-section right-bottom-section'>
                   <div className="wind-rain-container">
-                    <div className="square-card wind">wind direction: {currentWeather.wind_dir}</div>
-                    <div className="square-card rain">rain, inch: {currentWeather.precip_in}</div>
+                    <div className="square-card linear-gradient wind">wind direction: {currentWeather.wind_dir}</div>
+                    <div className="square-card linear-gradient rain">rain, inch: {currentWeather.precip_in}</div>
                   </div>
                 </div>
               </div>
