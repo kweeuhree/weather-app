@@ -7,7 +7,7 @@ const TopSegment = ({ location, units, currentWeather }) => {
 
     {/* top section left */}
     <div className="top-section left">
-        <div className="name">{location.name}</div>
+        <h3 className="name">{location.name}</h3>
         <div className="temperature">
         {currentWeather[`feelslike_${units}`]}
         </div>

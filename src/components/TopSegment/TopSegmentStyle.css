@@ -1,0 +1,21 @@
+.top-segment {
+    display: flex;
+}
+
+.top-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    border: solid purple;
+    width: 100%;
+}
+
+.left, .right {
+    width: 50%;
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+}
+

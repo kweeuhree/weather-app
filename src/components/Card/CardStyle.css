@@ -1,16 +1,17 @@
 .card-container {
     display: flex;
-    align-items: center;
+    flex-direction: column;
     overflow: none;
 }
 
 .card {
-    display: flex;
-    align-items: center;
+    flex-wrap: wrap;
 }
 
 .hourly {
     border: 1px solid blue;
+    overflow: auto;
+    width: 30vw;
 }
 
 .hourly ul {
@@ -20,4 +21,9 @@
 
 .hourly ul > li {
     list-style-type: none;
+}
+
+/* bottom segment */
+.bottom-segment {
+    border: 1px solid yellow;
 }
