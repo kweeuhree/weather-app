@@ -45,6 +45,7 @@ const HomePage = () => {
 
   useEffect(() => {
     setHeartColor('black'); // on re-render, change color to black 
+    setCurrentCity(currentCity);
   },[currentCity]);
 
    // default display is user location city, fetch once

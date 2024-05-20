@@ -1,0 +1,23 @@
+.card-container {
+    display: flex;
+    align-items: center;
+    overflow: none;
+}
+
+.card {
+    display: flex;
+    align-items: center;
+}
+
+.hourly {
+    border: 1px solid blue;
+}
+
+.hourly ul {
+    display: flex;
+    border: 1px solid orange;
+}
+
+.hourly ul > li {
+    list-style-type: none;
+}
