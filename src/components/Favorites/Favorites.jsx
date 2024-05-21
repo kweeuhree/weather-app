@@ -22,7 +22,7 @@ const toggleFavs = (city) => {
   })
 
   return (
-    <div className='fav-location-container'>{citiesJSX}</div>
+    <div className='fav-location-container'>{citiesJSX.length > 0 ? citiesJSX : <span>Your Locations</span>}</div>
   )
 }
 

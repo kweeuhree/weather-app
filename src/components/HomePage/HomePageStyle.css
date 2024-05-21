@@ -2,6 +2,7 @@ main {
     width: 100%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     /* border: 1px solid red; */
 }
 
@@ -10,9 +11,11 @@ section {
     height: 100%;
 }
 
-.favorite-section {
-    border: 1px solid black;
+.favorite-section { 
     width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .card-section {
@@ -23,13 +26,20 @@ section {
 }
 
 .form-button-container {
-    border: 1px solid purple;
+    border-radius: 1em;
+    border: 1px solid transparent;
+    background: linear-gradient(146deg, rgba(164, 164, 187, 0.26) 0%, rgba(138, 169, 236, 0.1) 98%);
     display: flex;
     align-items: center;
     flex-direction: column;
     position: absolute;
     right:0;
     top:39%;
-    width: 43%;
+    width: 40%;
     padding: 2%;
+    transition: border 300ms 40ms linear;
+}
+
+.form-button-container:hover {
+    border: 1px solid rgba(164, 164, 187, 0.6);
 }

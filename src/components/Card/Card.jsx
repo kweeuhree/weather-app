@@ -92,7 +92,7 @@ const Card = ({ currentCity, units }) => {
                   
                   <div className="squares-container">
 
-                    <div className="square-card linear-gradient uv">uv:{currentWeather.uv}</div>
+                    <div className="square-card linear-gradient uv">uv: {currentWeather.uv}</div>
                     <div className="square-card linear-gradient aiq">air quality: {forecastday[0].day.air_quality}</div>
         
                     <div className="square-card linear-gradient wind">wind direction: {currentWeather.wind_dir}</div>
