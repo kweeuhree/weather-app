@@ -154,7 +154,7 @@ const HomePage = () => {
     <main>
 
       <section className="favorite-section">
-          <Favorites heartColor={heartColor} setHeartColor={setHeartColor} currentCity={currentCity} setFavoriteCities={setFavoriteCities} favoriteCities={favoriteCities} units={state.units} />
+          <Favorites setCurrentCity={setCurrentCity} setFavoriteCities={setFavoriteCities} favoriteCities={favoriteCities} units={state.units} />
       </section>
 
 
