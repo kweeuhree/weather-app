@@ -31,5 +31,6 @@
 }
 
 .fav-location:hover {
+    cursor: pointer;
     background: linear-gradient(146deg, rgba(164, 164, 187, 0.55) 0%, rgba(138, 169, 236, 0.55) 98%);
 }

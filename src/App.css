@@ -1,5 +1,5 @@
 .App {
-  border:1px solid rgb(141, 202, 255);
+  border:1px solid rgb(163, 183, 201);
   border-radius: 2em;
   max-width: 85%;
   margin: 0 auto;
@@ -12,5 +12,5 @@
   box-shadow: 10px 10px 200px 0px rgba(255, 255, 255, 0.747);
 
   background: rgb(142,177,213);
-  background: linear-gradient(30deg, rgba(142,177,213,1) 0%, rgba(130,162,215,1) 17%, rgba(138,170,232,1) 33%, rgba(174,200,255,1) 61%, rgba(201,218,255,1) 97%, rgba(214,229,255,1) 100%);
+  background: linear-gradient(30deg, rgb(142, 164, 213) 0%, rgba(130,162,215,1) 17%, rgba(138,170,232,1) 33%, rgba(174,200,255,1) 61%, rgba(201,218,255,1) 97%, rgba(214,229,255,1) 100%);
 }

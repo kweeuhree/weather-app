@@ -7,9 +7,9 @@ const Favorites = ({ setFavoriteCities, favoriteCities, units }) => {
   console.log('favorite cities inside favorites ', favoriteCities);
 const toggleFavs = (city) => {
   setFavoriteCities(prevFavoriteCities => prevFavoriteCities.filter((item) => item.current.location.name !== city.current.location.name));
-
- 
 }
+
+// onclick display current favorite location inside card component
   const citiesJSX = favoriteCities.map((item, index) => {
     return (
       <div className='fav-location' key={index}>
