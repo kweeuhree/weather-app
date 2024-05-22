@@ -37,14 +37,16 @@
 .hourly {
     border: 1px solid rgb(58, 136, 238);
     scrollbar-width: thin;
-    scrollbar-color: #95abe9 #acc6ff;
+    scrollbar-color: #95abe9 transparent;
     overflow: auto;
     scroll-behavior: smooth;  
+    overflow-y: hidden;
 }
 
 .hourly ul {
     display: flex;
-    margin: 0 auto;
+    margin:0;
+    padding:0;
 }
 
 .hourly ul > li {
@@ -53,7 +55,15 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 2%;
+    margin:0;
+    padding:0;
+}
+
+.time {
+    display: flex;
+    width: 8vw;
+    align-items: center;
+    justify-content: center;
 }
 
 /* daily forecast */

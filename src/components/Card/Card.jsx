@@ -18,7 +18,7 @@ const Card = ({ currentCity, units }) => {
 
       const hourlyJSX = forecastday[0].hour.map((item, index) => (
         <li key={index}>
-          <div>{index}:00 {index < 12 ? 'AM' : 'PM'}</div>
+          <div className='time'>{index}:00 {index < 12 ? 'AM' : 'PM'}</div>
           <div>{item[`feelslike_${units}`]}</div>
           <div>
             <img src={item.condition.icon} alt={item.condition.text} />
