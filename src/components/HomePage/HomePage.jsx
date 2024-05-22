@@ -132,7 +132,7 @@ const HomePage = () => {
 
   const handleAddToFavs = () => {
     if (favoriteCities.length === 5) {
-      alert('Can’t add any more locations');
+      alert(`Can't add any more locations`);
       return;
     }
     const found = favoriteCities.find(

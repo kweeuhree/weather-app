@@ -58,6 +58,16 @@
     justify-content: center;
     /* border: 1px solid purple; */
 }
+
+.background-icon {
+    left: 2%;
+    opacity: 0.1;
+    font-size: 12rem;
+}
+
+.background-icon:hover {
+    opacity: 0.2;
+}
   }
   /* --------------------------------------end desktop---------------- */
   /* ---------------------------------------------------------------- */
@@ -121,6 +131,16 @@
     align-items: center;
     justify-content: center;
     /* border: 1px solid purple; */
+}
+
+.background-icon {
+    left: 2%;
+    opacity: 0.1;
+    font-size: 12rem;
+}
+
+.background-icon:hover {
+    opacity: 0.15;
 }
   }
   /* --------------------------------------end mid---------------- */
@@ -193,6 +213,17 @@
     justify-content: center;
     /* border: 1px solid purple; */
 }
+
+.background-icon {
+    right: 2%;
+    opacity: 0.1;
+    font-size: 12rem;
+    position: absolute;
+}
+
+.background-icon:hover {
+    opacity: 0.15;
+}
   }
       
   
@@ -212,6 +243,7 @@
     flex-wrap: wrap;
     width: 100%;
     /* border: 2px solid green; */
+
 }
 
 /* daily forecast */
@@ -271,6 +303,8 @@
     align-items: center;
     justify-content: center;
     text-align: center;
+    position: relative;
+    overflow: hidden;
 }
 
 .linear-gradient {

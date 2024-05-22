@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 import { GiSunrise, GiSunset  } from "react-icons/gi";
+import { WiHot, WiRaindrops, WiWindy, WiUmbrella } from "react-icons/wi";
+
 import TopSegment from '../TopSegment/TopSegment';
 import './CardStyle.css';
 
@@ -47,8 +49,8 @@ const Card = ({ currentCity, units }) => {
           </div>
 
           <div className="sun-section">
+            <GiSunset className="sun-icon" />
             <div>set: {forecastday[0].astro.sunset}</div>
-            <GiSunrise className="sun-icon" />
           </div>
         </div>
       );
@@ -91,10 +93,23 @@ const Card = ({ currentCity, units }) => {
                   
                   <div className="squares-container">
 
-                    <div className="square-card linear-gradient uv">uv: {currentWeather.uv}</div>
-                    <div className="square-card linear-gradient humidity">humidity: {forecastday[0].day.avghumidity}</div>
-                    <div className="square-card linear-gradient wind">wind direction: {currentWeather.wind_dir}</div>
-                    <div className="square-card linear-gradient rain">rain, inch: {currentWeather.precip_in}</div>
+                    <div className="square-card linear-gradient uv">
+                      <span className='background-icon'><WiHot /></span>
+                      <span className='square-card-text'>uv: {currentWeather.uv}</span>
+                      </div>
+                    <div className="square-card linear-gradient humidity">
+                    <span className='background-icon'><WiRaindrops /></span>
+                      <span className='square-card-text'>humidity: {forecastday[0].day.avghumidity}</span>
+                      
+                    </div>
+                    <div className="square-card linear-gradient wind">
+                    <span className='background-icon'><WiWindy /></span>
+                      <span className='square-card-text'>wind direction: {currentWeather.wind_dir}</span>
+                    </div>
+                    <div className="square-card linear-gradient rain">
+                       <span className='background-icon'><WiUmbrella /></span>
+                      <span className='square-card-text'> rain, inch: {currentWeather.precip_in}</span>
+                      </div>
                   </div>
                 </div>
               </div>
