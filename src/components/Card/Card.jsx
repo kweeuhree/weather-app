@@ -30,7 +30,6 @@ const Card = ({ currentCity, units }) => {
         <div className='daily'>
         <div className='daily-text'>         
          <div>average daytime temp: {forecastday[0].day[`avgtemp_${units}`]}</div>
-          <div>humidity: {forecastday[0].day.avghumidity}</div>
         </div>
         
         <div className='daily-icon'>
@@ -93,8 +92,7 @@ const Card = ({ currentCity, units }) => {
                   <div className="squares-container">
 
                     <div className="square-card linear-gradient uv">uv: {currentWeather.uv}</div>
-                    <div className="square-card linear-gradient aiq">air quality: {forecastday[0].day.air_quality}</div>
-        
+                    <div className="square-card linear-gradient humidity">humidity: {forecastday[0].day.avghumidity}</div>
                     <div className="square-card linear-gradient wind">wind direction: {currentWeather.wind_dir}</div>
                     <div className="square-card linear-gradient rain">rain, inch: {currentWeather.precip_in}</div>
                   </div>
