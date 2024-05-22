@@ -1,19 +1,5 @@
-.card-container {
-    display: flex;
-    flex-direction: column;
-    overflow: none;
-    border: 1px solid pink;
-    width: 100%;
-}
-
-
-.card {
-    flex-wrap: wrap;
-    width: 100%;
-    border: 2px solid green;
-}
-
-/* bottom segment */
+@media (min-width: 1280px) {
+   /* bottom segment */
 .bottom-segment {
     border: 2px solid yellow;
     display: flex;
@@ -70,7 +56,162 @@
     width: 8vw;
     align-items: center;
     justify-content: center;
-    border: 1px solid purple;
+    /* border: 1px solid purple; */
+}
+  }
+  /* --------------------------------------end desktop---------------- */
+  /* ---------------------------------------------------------------- */
+  /* --------------------------------------mid------------------- */
+  
+  @media (min-width: 403px) and (max-width: 880px) {
+   /* bottom segment */
+.bottom-segment {
+    border: 2px solid yellow;
+    display: flex;
+}
+.bottom-section {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid lime;
+}
+
+/* left bottom section */
+
+.left-bottom-section {
+    border: 1px solid red;
+    max-width:  50%;
+    padding: 2%;
+    justify-content: space-around;
+}
+
+.left-bottom-section > div {
+    margin-bottom: 2%;
+    height: 30%;
+}
+
+/* hourly forecast */
+
+.hourly {
+    border: 1px solid rgb(58, 136, 238);
+    scrollbar-width: thin;
+    scrollbar-color: #95abe9 transparent;
+    overflow: auto;
+    scroll-behavior: smooth;  
+    overflow-y: hidden;
+}
+
+.hourly ul {
+    display: flex;
+    margin:0;
+    padding:0;
+}
+
+.hourly ul > li {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin:0;
+    padding:0;
+}
+.time {
+    display: flex;
+    width: 8vw;
+    align-items: center;
+    justify-content: center;
+    /* border: 1px solid purple; */
+}
+  }
+  /* --------------------------------------end mid---------------- */
+  /* ---------------------------------------------------------------- */
+  /* --------------------------------------mobile------------------- */
+  
+  @media (max-width: 403px) {
+  /* bottom segment */
+.bottom-segment {
+    /* border: 2px solid yellow; */
+    display: flex;
+
+    margin-top: 35%;
+    flex-direction: column;
+}
+.bottom-section {
+    display: flex;
+    flex-direction: column;
+    /* border: 2px solid lime; */
+}
+
+/* left bottom section */
+
+.left-bottom-section {
+    /* border: 1px solid red; */
+    max-width:  100%;
+    padding: 2%;
+    justify-content: space-around;
+}
+
+.left-bottom-section > div {
+    margin-bottom: 2%;
+    height: 30%;
+}
+
+/* hourly forecast */
+
+.hourly {
+    border: 1px solid rgb(58, 136, 238);
+    scrollbar-width: thin;
+    scrollbar-color: #95abe9 transparent;
+    overflow: auto;
+    scroll-behavior: smooth;  
+    overflow-y: hidden;
+}
+
+.hourly ul {
+    display: flex;
+    margin:0;
+    padding:0;
+}
+
+.hourly ul > li {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin:0;
+    padding:0;
+
+    background-color: rgba(146, 175, 199, 0.205);
+    margin-inline-end: 2%;
+}
+
+.time {
+    display: flex;
+    width: 20vw;
+    align-items: center;
+    justify-content: center;
+    /* border: 1px solid purple; */
+}
+  }
+      
+  
+  /* --------------------------------------end mobile---------------- */
+  /* ---------------------------------------------------------------- */
+
+.card-container {
+    display: flex;
+    flex-direction: column;
+    overflow: none;
+    /* border: 1px solid pink; */
+    width: 100%;
+}
+
+
+.card {
+    flex-wrap: wrap;
+    width: 100%;
+    /* border: 2px solid green; */
 }
 
 /* daily forecast */
@@ -106,7 +247,7 @@
 
 .right-bottom-section {
     justify-content:flex-end;
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
     width:  100%;
 }
 
@@ -137,5 +278,5 @@
     border-radius: 1em;
     box-shadow: 6px 10px 9px -6px rgba(30, 50, 117, 0.411);
     background: rgb(53,53,54);
-    background: linear-gradient(146deg, rgba(53,53,54,0.26) 0%, rgba(239,244,255,0.1) 98%);
+    background: linear-gradient(146deg, rgba(53,53,54,0.2) 0%, rgba(151, 152, 155, 0.2) 98%);
 }
