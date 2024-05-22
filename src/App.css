@@ -10,7 +10,9 @@
   place-items: center;
 
   box-shadow: 10px 10px 200px 0px rgba(255, 255, 255, 0.747);
-
-  background: rgb(142,177,213);
-  background: linear-gradient(30deg, rgb(142, 164, 213) 0%, rgba(130,162,215,1) 17%, rgba(138,170,232,1) 33%, rgba(174,200,255,1) 61%, rgba(201,218,255,1) 97%, rgba(214,229,255,1) 100%);
+  /* background: rgb(142,177,213); */
+  /* background: linear-gradient(30deg, rgb(142, 164, 213, 0.3) 0%, rgba(130,162,215,0.3) 17%, rgba(138,170,232,0.3) 33%, rgba(174,200,255,0.3) 61%, rgba(201,218,255,0.3) 97%, rgba(214,229,255,0.3) 100%); */
+  background: linear-gradient(146deg, rgba(41, 41, 43, 0.35) 0%, rgba(239,244,255,0.45) 98%);
 }
+
+
