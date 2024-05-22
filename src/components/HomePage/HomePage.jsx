@@ -143,7 +143,7 @@ const HomePage = () => {
       setFavoriteCities(prevFavoriteCities => prevFavoriteCities.filter(item => item.current.location.lat !== currentCity.current.location.lat || item.current.location.lon !== currentCity.current.location.lon));
       setHeartColor('black');
     } else {
-      setFavoriteCities(prevFavoriteCities => [...prevFavoriteCities, currentCity]);
+      setFavoriteCities(prevFavoriteCities => [currentCity, ...prevFavoriteCities]);
       setHeartColor('red');
     }
   };

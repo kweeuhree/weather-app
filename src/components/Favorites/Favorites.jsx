@@ -18,8 +18,9 @@ const handleClick = (item) => {
   const citiesJSX = favoriteCities.map((item, index) => {
     return (
       <div className='fav-location' key={index} onClick={()=>handleClick(item)}>
-        {item.current.location.name} - {item.current.current[`feelslike_${units}`]} 
-          <span style={{color: 'red'}} onClick={()=>toggleFavs(item)}>
+          <span className='fav-location-span'>{item.current.location.name} {item.current.current[`feelslike_${units}`]} </span>
+        
+          <span className='heart-span' style={{color: 'red'}} onClick={()=>toggleFavs(item)}>
             <IoHeartOutline />
           </span>
     </div>
