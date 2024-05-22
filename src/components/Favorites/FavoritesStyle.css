@@ -1,17 +1,65 @@
-.fav-location-container {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    min-height: 25vh;
-    padding-top: 15%;
-    padding-bottom: 15%;
-    border-radius: 1em;
-    background: linear-gradient(146deg, rgba(164, 164, 187, 0.26) 0%, rgba(138, 169, 236, 0.1) 98%);
-    box-shadow: 6px 10px 9px -6px rgba(59, 79, 145, 0.411);
-}
+@media (min-width: 1280px) {
+    .fav-location-container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        min-height: 25vh;
+        padding-top: 15%;
+        padding-bottom: 15%;
+        border-radius: 1em;
+        background: linear-gradient(146deg, rgba(164, 164, 187, 0.26) 0%, rgba(138, 169, 236, 0.1) 98%);
+        box-shadow: 6px 10px 9px -6px rgba(59, 79, 145, 0.411);
+    }
+  }
+  /* --------------------------------------end desktop---------------- */
+  /* ---------------------------------------------------------------- */
+  /* --------------------------------------mid------------------- */
+  
+  @media (min-width: 403px) and (max-width: 880px) {
+    .fav-location-container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        min-height: 25vh;
+        padding-top: 15%;
+        padding-bottom: 15%;
+        border-radius: 1em;
+        background: linear-gradient(146deg, rgba(164, 164, 187, 0.26) 0%, rgba(138, 169, 236, 0.1) 98%);
+        box-shadow: 6px 10px 9px -6px rgba(59, 79, 145, 0.411);
+    }
+  }
+  /* --------------------------------------end mid---------------- */
+  /* ---------------------------------------------------------------- */
+  /* --------------------------------------mobile------------------- */
+  
+  @media (max-width: 403px) {
+    .fav-location-container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        min-height: 5vh;
+        padding-top: 15%;
+        padding-bottom: 15%;
+        border-radius: 1em;
+        background: linear-gradient(146deg, rgba(164, 164, 187, 0.26) 0%, rgba(138, 169, 236, 0.1) 98%);
+        box-shadow: 6px 10px 9px -6px rgba(59, 79, 145, 0.411);
+    }
+  }
+      
+  
+  /* --------------------------------------end mobile---------------- */
+  /* ---------------------------------------------------------------- */
+
+
 
 .fav-location-container > span {
     color: rgba(255, 255, 255, 0.486);

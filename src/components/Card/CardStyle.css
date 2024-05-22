@@ -2,26 +2,32 @@
     display: flex;
     flex-direction: column;
     overflow: none;
+    border: 1px solid pink;
+    width: 100%;
 }
+
 
 .card {
     flex-wrap: wrap;
+    width: 100%;
+    border: 2px solid green;
 }
 
 /* bottom segment */
 .bottom-segment {
-    /* border: 1px solid yellow; */
+    border: 2px solid yellow;
     display: flex;
 }
 .bottom-section {
     display: flex;
     flex-direction: column;
-    /* border: 1px solid lime; */
+    border: 2px solid lime;
 }
 
 /* left bottom section */
 
 .left-bottom-section {
+    border: 1px solid red;
     max-width:  50%;
     padding: 2%;
     justify-content: space-around;
@@ -64,6 +70,7 @@
     width: 8vw;
     align-items: center;
     justify-content: center;
+    border: 1px solid purple;
 }
 
 /* daily forecast */
@@ -99,7 +106,7 @@
 
 .right-bottom-section {
     justify-content:flex-end;
-    /* border: 1px solid purple; */
+    border: 1px solid blue;
     width:  100%;
 }
 
