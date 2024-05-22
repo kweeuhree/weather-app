@@ -141,7 +141,6 @@ section {
     height: 100%;
 }
 
-.form-button-container:h
-margin: 0 auto;over {
+.form-button-container:hover {
     border: 1px solid rgba(164, 164, 187, 0.6);
 }

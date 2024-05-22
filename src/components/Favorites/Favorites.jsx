@@ -9,6 +9,10 @@ const Favorites = ({ setCurrentCity, setFavoriteCities, favoriteCities, units })
 const toggleFavs = (city) => {
   setFavoriteCities(prevFavoriteCities => prevFavoriteCities.filter((item) => item.current.location.name !== city.current.location.name));
 }
+
+// when i toggle favorites, i dont want clicked element to be passed into current city
+
+
 // onclick display current favorite location inside card component
 const handleClick = (item) => {
   setCurrentCity(item);
