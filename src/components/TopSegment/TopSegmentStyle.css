@@ -1,46 +1,59 @@
 .top-segment {
-    display: flex;
-    height: 25vh;
-    margin-inline-start: 15%;
-    margin-inline-end: 15%;
-}
-
-.top-section {
-    padding: 8%;
-    display: flex;
-    text-align: center;
-    justify-content: space-evenly;
-    /* border: solid purple; */
     width: 100%;
-}
-
-.left, .right {
-    width: 50%;
-}
-
-.left {
+    /* border: solid seagreen; */
     display: flex;
     flex-direction: column;
+    margin-block-start: 2%;
+    margin-block-end: 4%;
 }
 
-.right {
-    text-align: start;
+.top-container {
+/* border: solid dimgrey; */
+text-align: center;
+font-size: 2rem;
 }
 
-/* .current-condition-icon {
+.middle-container {
     display: flex;
+    justify-content:  center;
+    /* border: solid blue; */
+    margin-inline-start: 14%;
 
-    border: solid red;
-    height: 80%;
-    width: 100%;
-    margin: 0;
-    justify-content: center;
+}
+
+.temperature-parent {
+    display: flex;
     align-items: center;
-} */
+    justify-content:  center;
+}
+
+.current-condition-icon {
+    /* border:1px solid red; */
+    width: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content:  center;
+}
+
+.temperature {
+    /* border:1px solid green; */
+    font-size: 5.5em;
+    display: flex;
+    align-items: center;
+}
+
+.temperature span {
+    margin-left: -10%;
+}
 
 .current-condition-icon img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    /* object-fit: contain; */
 }
 
+.bottom-container {
+    /* border: solid dimgrey; */
+    text-align: center;
+    font-size: 1.4rem;
+    }
