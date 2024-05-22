@@ -1,59 +1,223 @@
-.top-segment {
-    width: 100%;
-    /* border: solid seagreen; */
-    display: flex;
-    flex-direction: column;
-    margin-block-start: 2%;
-    margin-block-end: 4%;
-}
 
-.top-container {
-/* border: solid dimgrey; */
-text-align: center;
-font-size: 2rem;
-}
+@media (min-width: 1280px) {
+    .top-segment {
+        width: 100%;
+        /* border: solid seagreen; */
+        display: flex;
+        flex-direction: column;
+        margin-block-start: 2%;
+        margin-block-end: 4%;
+    }
+    
+    .top-container {
+    /* border: solid dimgrey; */
+    text-align: center;
+    font-size: 2rem;
+    }
+    
+    .temperature-parent {
+        display: flex;
+        align-items: center;
+        justify-content:  center;
+    }
 
-.middle-container {
-    display: flex;
-    justify-content:  center;
-    /* border: solid blue; */
-    margin-inline-start: 14%;
+    .temperature {
+        /* border:1px solid green; */
+        font-size: 5.5em;
+        display: flex;
+        align-items: center;
+    }
 
-}
+    .current-condition-icon {
+        /* border:1px solid red; */
+        width: 5rem;
+        display: flex;
+        align-items: center;
+        justify-content:  center;
+    }
 
-.temperature-parent {
-    display: flex;
-    align-items: center;
-    justify-content:  center;
-}
+    .current-condition-icon img {
+        
+        /* border:1px solid red; */
+        width: 5rem;
+        display: flex;
+        align-items: center;
+        justify-content:  center;
+        display:block;
+    }
 
-.current-condition-icon {
-    /* border:1px solid red; */
-    width: 5rem;
-    display: flex;
-    align-items: center;
-    justify-content:  center;
-}
+    .middle-container {
+        display: flex;
+        justify-content:  center;
+        /* border: solid blue; */
+        margin-inline-start: 14%;
+    
+    }
 
-.temperature {
-    /* border:1px solid green; */
-    font-size: 5.5em;
-    display: flex;
-    align-items: center;
-}
+    
+    .bottom-container {
+        /* border: solid dimgrey; */
+        text-align: center;
+        font-size: 1.4rem;
+    
+        display: unset;
+        align-items: unset;
+        justify-content:  unset;
+        }
+  }
+  /* --------------------------------------end desktop---------------- */
+  /* ---------------------------------------------------------------- */
+  /* --------------------------------------mid------------------- */
+  
+  @media (min-width: 403px) and (max-width: 880px) {
+
+    .top-segment {
+        width: 100%;
+        /* border: solid seagreen; */
+        display: flex;
+        flex-direction: column;
+        margin-block-start: 2%;
+        margin-block-end: 4%;
+    }
+    
+    .top-container {
+    /* border: solid dimgrey; */
+    text-align: center;
+    font-size: 2rem;
+    }
+    
+    .temperature-parent {
+        display: flex;
+        align-items: center;
+        justify-content:  center;
+    }
+
+    .temperature {
+        /* border:1px solid green; */
+        font-size: 5.5em;
+        display: flex;
+        align-items: center;
+    }
+
+    .current-condition-icon {
+        /* border:1px solid red; */
+        width: 5rem;
+        display: flex;
+        align-items: center;
+        justify-content:  center;
+    }
+
+    .current-condition-icon img {
+        /* border:1px solid red; */
+        width: 5rem;
+        display: flex;
+        align-items: center;
+        justify-content:  center;
+        display:block;
+    }
+
+    .middle-container {
+        display: flex;
+        justify-content:  center;
+        /* border: solid blue; */
+        margin-inline-start: 14%;
+    
+    }
+
+    .bottom-container {
+        /* border: solid dimgrey; */
+        text-align: center;
+        font-size: 1.4rem;
+    
+        display: unset;
+        align-items: unset;
+        justify-content:  unset;
+        }
+  }
+  /* --------------------------------------end mid---------------- */
+  /* ---------------------------------------------------------------- */
+  /* --------------------------------------mobile------------------- */
+  
+  @media (max-width: 403px) {
+    .top-segment {
+        width: 100%;
+        /* border: solid seagreen; */
+        display: flex;
+        flex-direction: unset;
+        margin-block-start: 2%;
+        margin-block-end: 4%;
+
+    }
+    
+    .top-container {
+    /* border: solid dimgrey; */
+    text-align: unset;
+    font-size: 1.5rem;
+    }
+    
+    .temperature-parent {
+        display: flex;
+        align-items: center;
+        justify-content:  center;
+    }
+
+    .temperature {
+        /* border:1px solid green; */
+        font-size: 2em;
+        display: flex;
+        align-items: center;
+    }
+
+    .current-condition-icon {
+        /* border:1px solid red; */
+        width: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content:  center;
+    }
+
+    .current-condition-icon img {
+        /* border:1px solid red; */
+        width: 0vw;
+        display: flex;
+        align-items: center;
+        justify-content:  center;
+        display:none;
+    }
+
+    .middle-container {
+        display: flex;
+        justify-content:  center;
+        /* border: solid blue; */
+        margin-inline-start: 0%;
+    
+    }
+
+    .bottom-container {
+        /* border: solid dimgrey; */
+        text-align: center;
+        font-size: 1.4rem;
+    
+        display: flex;
+        align-items: center;
+        justify-content:  center;
+        }
+  }
+      
+  
+  /* --------------------------------------end mobile---------------- */
+  /* ---------------------------------------------------------------- */
 
 .temperature span {
     margin-left: -10%;
-}
-
-.current-condition-icon img {
-    width: 100%;
-    height: 100%;
-    /* object-fit: contain; */
 }
 
 .bottom-container {
     /* border: solid dimgrey; */
     text-align: center;
     font-size: 1.4rem;
+
+    display: flex;
+    align-items: center;
+    justify-content:  center;
     }
