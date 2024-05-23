@@ -3,11 +3,14 @@
 .bottom-segment {
     border: 2px solid yellow;
     display: flex;
+    margin-top: unset;
+    flex-direction: unset;
 }
 .bottom-section {
     display: flex;
     flex-direction: column;
     border: 2px solid lime;
+    width: unset;
 }
 
 /* left bottom section */
@@ -63,6 +66,7 @@
     left: 2%;
     opacity: 0.1;
     font-size: 12rem;
+    position: absolute;
 }
 
 .background-icon:hover {
@@ -76,20 +80,23 @@
   @media (min-width: 403px) and (max-width: 880px) {
    /* bottom segment */
 .bottom-segment {
-    border: 2px solid yellow;
+    /* border: 2px solid yellow; */
     display: flex;
+    margin-top: 35%;
+    flex-direction: column;
 }
 .bottom-section {
     display: flex;
     flex-direction: column;
-    border: 2px solid lime;
+    /* border: 2px solid lime; */
+    width: 100%;
 }
 
 /* left bottom section */
 
 .left-bottom-section {
-    border: 1px solid red;
-    max-width:  50%;
+    /* border: 1px solid red; */
+    max-width:  95%;
     padding: 2%;
     justify-content: space-around;
 }
@@ -127,7 +134,7 @@
 }
 .time {
     display: flex;
-    width: 8vw;
+    width: 20vw;
     align-items: center;
     justify-content: center;
     /* border: 1px solid purple; */
@@ -137,6 +144,7 @@
     left: 2%;
     opacity: 0.1;
     font-size: 12rem;
+    position: absolute;
 }
 
 .background-icon:hover {
@@ -160,6 +168,8 @@
     display: flex;
     flex-direction: column;
     /* border: 2px solid lime; */
+
+    width: unset;
 }
 
 /* left bottom section */

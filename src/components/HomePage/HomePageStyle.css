@@ -51,7 +51,7 @@
         align-items: center;
         /* border: 1px solid red; */
         
-        flex-direction: unset;
+        flex-direction: column;
     }
 
     .form-button-container {
@@ -64,21 +64,21 @@
         flex-direction: column;
         position: absolute;
         right:0;
-        top:39%;
-        width: 40%;
+        top:23%;
+        width: 95%;
         padding: 2%;
         transition: border 300ms 40ms linear;
     }
 
     .card-section {
         /* border: 1px solid blue; */
-        width: 70%;
+        width: 100%;
         flex-direction: column;
         position: relative;
     }
 
     .favorite-section { 
-        width: 30%;
+        width: 95%;
         display: flex;
         align-items: center;
         justify-content: center;
