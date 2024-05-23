@@ -8,9 +8,7 @@ function App() {
   return (
     <div className="App default-background">
 
-       <Routes>
-          <Route path="/home" element={<HomePage />} />
-       </Routes>
+        <HomePage />
 
     </div>
   )
