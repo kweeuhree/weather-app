@@ -1,5 +1,5 @@
 
-@media (min-width: 1280px) {
+@media (min-width: 880px) and (max-width: 1280px) {
     .top-segment {
         width: 100%;
         /* border: solid seagreen; */
@@ -54,7 +54,7 @@
         display: flex;
         justify-content:  center;
         /* border: solid blue; */
-        margin-inline-start: 14%;
+        margin-inline-start: 1%;
     
     }
 
