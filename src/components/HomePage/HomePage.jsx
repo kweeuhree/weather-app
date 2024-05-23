@@ -40,8 +40,8 @@ const HomePage = () => {
 
   const api_key = import.meta.env.VITE_WEATHER_API;
   const api_query = `?key=${api_key}`;
-  const baseUrl = `http://api.weatherapi.com/v1/current.json`;
-  const forecastUrl = `http://api.weatherapi.com/v1//forecast.json`;
+  const baseUrl = `https://api.weatherapi.com/v1/current.json`;
+  const forecastUrl = `https://api.weatherapi.com/v1//forecast.json`;
 
   useEffect(() => {
     setHeartColor('black'); // on re-render, change color to black 
