@@ -9,12 +9,12 @@
 
         display: flex;
         align-items: center;
-        justify-content:  center;
+        /* justify-content:  start; */
     }
     
     .top-container {
     /* border: solid dimgrey; */
-    text-align: center;
+    /* text-align: center; */
     font-size: 2rem;
     }
     

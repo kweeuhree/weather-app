@@ -130,11 +130,14 @@ const HomePage = () => {
     }
   };
 
-  const handleAddToFavs = () => {
+  const handleAddToFavs = (event) => {
+    event.stopPropagation();
+
     if (favoriteCities.length === 5) {
       alert(`Can't add any more locations`);
       return;
     }
+    
     const found = favoriteCities.find(
       item => item.current.location.lat === currentCity.current.location.lat && item.current.location.lon === currentCity.current.location.lon
     );
