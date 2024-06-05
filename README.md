@@ -6,7 +6,5 @@
 
 
 <p align="center">
-    <video width="1000" controls="controls" autoplay="autoplay" loop="loop" muted>
-        <source src="src\assets\weather-recording (1).mp4" type="video/mp4">
-    </video>
+   <img src="src\assets\images\ezgif-5-c65857ab04.gif" alt="App demonstration" >
 </p>
