@@ -6,5 +6,7 @@
 
 
 <p align="center">
-    <video src="src\assets\weather-recording (1).mp4" width="1000" controls="controls" autoplay="autoplay" loop="loop" muted></video>
+    <video width="1000" controls="controls" autoplay="autoplay" loop="loop" muted>
+        <source src="src\assets\weather-recording (1).mp4" type="video/mp4">
+    </video>
 </p>
