@@ -1,29 +1,22 @@
-import React, { useState } from 'react';
-import './FormStyle.css';
+import { Button } from "../Button";
 
-const Form = ({ setUserSearch }) => {
-
-  const [formData, setFormData] = useState({searchTerm: ''});
-  
-  const handleChange = (event) => {
-    // update form data
-    setFormData({...formData, searchTerm: event.target.value})
-  };
+export const Form = ({ setUserSearch }) => {
 
   const handleSubmit = (event) => {
     // update props
     event.preventDefault();
-    setUserSearch(formData.searchTerm);
-    console.log(formData.searchTerm, ' inside handleSubmit in form component');
+    const searchTerm = event.target.elements.namedItem('input').value;
+
+    setUserSearch(searchTerm);
+    
     event.target.reset();
   };
 
   return (
-      <form className='my-form' onSubmit={handleSubmit}>
-          <input className='input-input'type="text" onChange={handleChange} placeholder='enter city or zip code'/>
-          <input className='input-submit' type="submit" value="Find" />
+      <form className="display-flex flex-center" onSubmit={handleSubmit}>
+          <input name='input' type="text" placeholder='enter city or zip code'/>
+          <Button type="submit">Find</Button>
        </form>
   )
 }
 
-export default Form;
