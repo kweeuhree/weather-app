@@ -1,30 +1,19 @@
-import React from 'react';
-import './FavoritesStyle.css';
 import { IoHeartOutline } from "react-icons/io5";
 
 
-const Favorites = ({ setCurrentCity, setFavoriteCities, favoriteCities, units }) => {
-  console.log('favorite cities inside favorites ', favoriteCities);
-
-const toggleFavs = (city) => {
-  setFavoriteCities(prevFavoriteCities => prevFavoriteCities.filter((item) => item.current.location.name !== city.current.location.name));
-}
-
-// when i toggle favorites, i dont want clicked element to be passed into current city
-
+export const Favorites = ({ setCurrentCity, units, favoriteCities, toggleFavs }) => {
 
 // onclick display current favorite location inside card component
-const handleClick = (item) => {
-  setCurrentCity(item);
-  console.log('setting current city inside favorites handleClick', item);
+const handleClick = (city) => {
+  setCurrentCity(city);
 }
 
-  const citiesJSX = favoriteCities.map((item, index) => {
+  const citiesJSX = favoriteCities.map((city, index) => {
     return (
-      <div className='fav-location' key={index} onClick={()=>handleClick(item)}>
-          <span className='fav-location-span'>{item.current.location.name} {item.current.current[`feelslike_${units}`]} </span>
+      <div className='fav-location' key={index} >
+          <span className='fav-location-span' onClick={()=> handleClick(city)}>{city.current.location.name} {city.current.current[`feelslike_${units}`]} </span>
         
-          <span className='heart-span' style={{color: 'red'}} onClick={()=>toggleFavs(item)}>
+          <span className='heart-span' onClick={(event)=> toggleFavs(city, event)}>
             <IoHeartOutline />
           </span>
     </div>
@@ -36,4 +25,4 @@ const handleClick = (item) => {
   )
 }
 
-export default Favorites;
+ 
