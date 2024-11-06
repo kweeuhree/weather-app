@@ -51,3 +51,40 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.display-flex {
+  display: flex;
+}
+
+.flex-center {
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.no-overflow {
+  overflow-x: auto;
+}
+
+.max-width {
+  max-width: 100%;
+}
+
+.red-border {
+  border: 1px solid red;
+}
+
+.green-border {
+  border: 1px solid green;
+}
+
+.gap-1vw {
+  gap: 1vw;
+}
+
+.width-50 {
+  width: 50%;
+}
