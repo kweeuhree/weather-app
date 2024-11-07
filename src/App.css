@@ -10,7 +10,7 @@
 }
 
 .black-font {
-  color: rgb(70, 69, 69);
+  color: var(--color-degree);
 }
 
 .App {
@@ -19,7 +19,6 @@
   background-color: var(--color-bg);
   border-radius: 4px;
   max-width: 100vw;
-  /* background-position: 100% 100%; */
 }
 
 .MuiDrawer-root .MuiPaper-root.MuiDrawer-paper  {

@@ -2,6 +2,12 @@
     list-style: none;
 }
 
+.plain-li:focus {
+    outline: none;
+    background-color: var(--color-bg);
+    box-shadow: 0 0 5px var(--color-box-shadow); 
+  }
+
 .hourly-list {
     padding: 0;
 }

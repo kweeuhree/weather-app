@@ -3,12 +3,13 @@
   --color-bg: rgba(68, 76, 82, 0.151);
   --color-blue: rgba(91, 164, 223, 0.5);
   --color-box-shadow: rgba(39, 41, 40, 0.3);
+  --color-bg-button: rgb(53,53,54);
+  --color-degree: rgb(70, 69, 69);
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
   color: white;
-  background: linear-gradient(45deg, rgba(2,0,36,0.654499299719888) 0%, rgba(9,9,121,0.6348914565826331) 35%, rgba(0,140,255,0.5536589635854341) 100%);
-  /* background-color: var(--color-bg); */
+  background: linear-gradient(45deg, rgba(2,0,36,0.6) 0%, rgba(9,9,121,0.6) 35%, rgba(0,140,255,0.6) 100%);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -39,7 +40,7 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background: rgb(53,53,54);
+  background: var(--color-bg-button);
   color: white;
   background: linear-gradient(146deg, rgba(53,53,54,0.26) 0%, rgba(239,244,255,0.1) 98%);
   cursor: pointer;
@@ -94,18 +95,8 @@ button:focus-visible {
   flex-direction: column;
 }
 
-.right-justify {
-  align-items: center;
-  justify-content: right;
-}
-
-/* Overflow */
-.overflow-x-auto {
-  overflow-x: auto;
-}
-
-.hidden-overflow {
-  overflow: hidden;
+.gap-1rem {
+  gap: 1rem;
 }
 
 /* Widths */
@@ -121,46 +112,12 @@ button:focus-visible {
   width: 90%;
 }
 
-.width-50 {
-  width: 50%;
-}
-
 /* Heights */
 .full-height {
   height: 100%;
 }
 
-/* Borders */
-.bd-rd-4px {
-  border-radius: 4px;
-}
-
-.red-border {
-  border: 1px solid red;
-}
-
-.green-border {
-  border: 1px solid green;
-}
-
-.gap-1vw {
-  gap: 1vw;
-}
-
-.gap-1rem {
-  gap: 1rem;
-}
-
-
-
-.red-heart {
-  color: var(--color-red);
-}
-
-.relative {
-  position: relative;
-}
-
+/* Paddings */
 .pd-1rem {
   padding: 1rem;
 }
@@ -181,15 +138,31 @@ button:focus-visible {
   padding-block: 1.5rem;
 }
 
+/* Horizontal rule */
 hr {
   width: 80%;
   opacity: 0.6;
   color: whitesmoke;
 }
 
+/* Card */
 .card {
   border-radius: 4px;
   border: 1px solid var(--color-blue);
   background-color: var(--color-bg);
   box-shadow: 1px 3px 2px 0px var(--color-box-shadow);
+}
+
+/* Heart color */
+.red-heart {
+  color: var(--color-red);
+}
+
+/* Development borders */
+.red-border {
+  border: 1px solid red;
+}
+
+.green-border {
+  border: 1px solid green;
 }

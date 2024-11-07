@@ -1,0 +1,8 @@
+.MuiTextField-root .MuiInputBase-input {
+    color: white;
+    outline-color: white;
+  }
+  
+  .MuiTextField-root .MuiFilledInput-underline {
+    border-bottom: none; /* Change underline color to white */
+  }

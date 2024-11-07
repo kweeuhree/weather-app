@@ -2,10 +2,11 @@ import TextField from '@mui/material/TextField';
 
 import { Button } from "../Button";
 
+import './formStyles.css';
+
 export const Form = ({ setUserSearch }) => {
 
   const handleSubmit = (event) => {
-    // update props
     event.preventDefault();
     const searchTerm = event.target.elements.namedItem('input').value;
 
