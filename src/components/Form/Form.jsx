@@ -1,3 +1,5 @@
+import TextField from '@mui/material/TextField';
+
 import { Button } from "../Button";
 
 export const Form = ({ setUserSearch }) => {
@@ -13,8 +15,8 @@ export const Form = ({ setUserSearch }) => {
   };
 
   return (
-      <form className="display-flex flex-center" onSubmit={handleSubmit}>
-          <input name='input' type="text" placeholder='enter city or zip code'/>
+      <form className="display-flex flex-center gap-1rem" onSubmit={handleSubmit}>
+          <TextField name='input' type="text" placeholder='Enter city or zip code' variant="filled"/>
           <Button type="submit">Find</Button>
        </form>
   )
