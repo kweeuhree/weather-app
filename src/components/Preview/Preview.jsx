@@ -13,8 +13,8 @@ export const Preview = ({ currentCity, units }) => {
     const temperature = units === 'c' ? feelslike_c : feelslike_f;
 
   return (
-    <div className="display-flex flex-center flex-column">
-
+    <div className="display-flex flex-center flex-column pd-block-15rem">
+      
       <h3>{name}</h3>
 
       <div className="display-flex flex-center">
@@ -25,9 +25,7 @@ export const Preview = ({ currentCity, units }) => {
 
           <div>
             {temperature}
-            <span>
               <WiDegrees />
-            </span>
           </div>
 
       </div>
