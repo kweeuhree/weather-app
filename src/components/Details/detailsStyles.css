@@ -1,3 +1,7 @@
 .plain-li {
     list-style: none;
 }
+
+.hourly-list {
+    padding: 0;
+}

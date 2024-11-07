@@ -1,52 +1,86 @@
+import { useRef } from 'react';
+
 import { GiSunrise, GiSunset  } from "react-icons/gi";
 import { WiHot, WiRaindrops, WiWindy, WiUmbrella } from "react-icons/wi";
+
+import Grid2 from "@mui/material/Grid2";
 
 import './detailsStyles.css';
 
 const hourlyJSX = (hour, units) => {
+  const currentTime = new Date().getHours();
+  const displayHours = hour.slice(currentTime);
+
+  const itemRefs = useRef([]);
+
   return (
-    hour.map(( { condition: { icon, text }}, index) => (
-      <li className="plain-li" key={index}>
-        <div>
-          {index}:00 {index < 12 ? 'AM' : 'PM'}
+    displayHours.map(({ condition: { icon, text }}, index) => {
+      const displayHour = currentTime + index;
+
+      const focusRef = (el) => {
+        itemRefs.current[index] = el;
+        // Focus the first element in the array
+        if (index === 0 && el) {
+          el.focus();
+          
+          el.scrollIntoView({
+            behavior: 'smooth', 
+            block: 'center',   
+          });
+        }
+      };
+
+      return (
+        <div key={index} className='full-width'>
+          <li
+            className="display-flex flex-evenly gap-1rem plain-li"
+            ref={focusRef}
+            tabIndex="-1" // Set `tabIndex` so the element can be focused
+          >
+            <div>
+              {displayHour < 10 && '0'}{displayHour}:00 {displayHour < 12 ? 'AM' : 'PM'}
+            </div>
+            
+            <em>
+             {hour[displayHour][`feelslike_${units}`]}
+            </em>
+
+            <div>
+              <img src={icon} alt={text} />
+            </div>
+          </li>
+          <hr />
         </div>
-        
-        <div>
-          {hour[`feelslike_${units}`]}
-        </div>
-  
-        <div>
-          <img src={icon} alt={text} />
-        </div>
-      </li>
-    ))
-)}
+      );
+    })
+  );
+};
 
 const dailyJSX = (day, units) => {
   return (
-      <>
+      <div className='display-flex flex-center card pd-1rem'>
         <div>         
-          average daytime temp: {day[`avgtemp_${units}`]}
+          Average daytime temp: {day[`avgtemp_${units}`]}
         </div>
       
         <div>
           <img src={day.condition.icon} alt={day.condition.text} />
         </div>
-      </>
+      </div>
   );
 }
 
 const sunriseSunsetJSX = ({ sunrise, sunset }) => (
-  <>
-    <div>
-      <div>rise: {sunrise}</div>
-      <GiSunrise />
+  <Grid2 container spacing={4} className='card'>
+    <div className="display-flex flex-space flex-column pd-inline-15rem pd-block-15rem">
+      <div>Rise: {sunrise}</div>
+      <span className="font-5rem"><GiSunrise /></span>
     </div>
-    <div>
-      <GiSunset />
-      <div>set: {sunset}</div>
+    <div className="display-flex flex-space flex-column pd-inline-15rem pd-block-15rem">
+      <span className="font-5rem"><GiSunset /></span>
+      <div>Set: {sunset}</div>
     </div>
-  </>
+  </Grid2>
 );
 
 
@@ -82,27 +116,29 @@ export const Details = ({ currentCity, units }) => {
   return (
     <div className="display-flex flex-center flex-column">
       
-      <div className="display-flex flex-center max-width">
-          <ul className="display-flex flex-center no-overflow">{hourlyJSX(hour, units)}</ul>
+      <div className="display-flex flex-center full-width">
+          <ul className="hourly-list display-flex flex-center flex-column full-width">{hourlyJSX(hour, units)}</ul>
       </div>
 
-      <div className="display-flex flex-center">
+      <Grid2 container spacing={2} className="display-flex flex-center full-width">
           <div 
-            className="display-flex flex-center width-50">
+            className="display-flex flex-center">
               {dailyJSX(day, units)}
           </div>
           <div 
-            className="display-flex flex-center flex-column width-50">
+            className="display-flex flex-center flex-column full-width">
               {sunriseSunsetJSX(astro)}
           </div> 
-      </div>
+      </Grid2>
 
-      <div>
+      <div className="display-flex flex-center flex-column full-width gap-1rem pd-block-1rem">
         {Object.entries(weatherDetails).map(([text, { details, icon: Icon }]) => (
-          <div key={text}>
-            <span>{text}:</span>
-            <span>{details}</span>
-            <span><Icon /></span>
+          <div key={text} className="display-flex flex-space card width-90">
+            <div className="display-flex flex-space width-90 pd-inline-1rem">
+              <span>{text}:</span>
+              <span>{details}</span>
+            </div>
+            <span className="font-5rem"><Icon /></span>
           </div>
         ))}
       </div>
