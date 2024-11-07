@@ -1,4 +1,7 @@
-const getUserLocation = () => {
+const getUserLocation = (): Promise<{
+  latitude: string, 
+  longitude: string
+}> => {
     return new Promise((resolve, reject) => {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
@@ -12,13 +15,21 @@ const getUserLocation = () => {
     });
   };
   
-  const showPosition = (position) => {
+  const showPosition = (
+    position: {
+      coords: GeolocationCoordinates,
+      timestamp: number,
+    }
+  ): {
+    latitude: string, 
+    longitude: string
+  } => {
     const latitude = (position.coords.latitude).toFixed(4);
     const longitude = (position.coords.longitude).toFixed(4);
     return { latitude, longitude };
   };
   
-  const showError = (error) => {
+  const showError = (error: GeolocationPositionError): void => {
     switch (error.code) {
       case error.PERMISSION_DENIED:
         console.log("User denied the request for Geolocation.");
@@ -29,13 +40,16 @@ const getUserLocation = () => {
       case error.TIMEOUT:
         console.log("The request to get user location timed out.");
         break;
-      case error.UNKNOWN_ERROR:
+      default:
         console.log("An unknown error occurred.");
         break;
     }
   };
   
-  export const getCoordinates = () => {
+  export const getCoordinates = (): Promise<{
+    latitude: string, 
+    longitude: string,
+  }> => {
     return getUserLocation()
       .then((coords) => coords)
       .catch((error) => {
