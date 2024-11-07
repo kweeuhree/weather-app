@@ -1,6 +1,7 @@
-import { useState, useEffect, useReducer, Suspense } from 'react';
+import { useState, useEffect, useReducer, useMemo, Suspense } from 'react';
 
-import { IoHeartOutline } from "react-icons/io5";
+import { IoHeartSharp } from "react-icons/io5";
+import Drawer from '@mui/material/Drawer';
 
 import { Favorites, Button, Form, Preview, Details, Loading } from './components';
 
@@ -8,10 +9,12 @@ import {
   fetchCoordinates,
   fetchWeatherData,
   reducer, 
-  useFavoriteCities
+  useFavoriteCities,
+  isCityFavorite
 } from './utils';
 
 import './App.css';
+import { Box } from '@mui/material';
 
 
 function App() {
@@ -21,6 +24,18 @@ function App() {
     current: null,
     forecast: null
   });
+
+  const [drawer, setDrawer] = useState({
+    top: false,
+  });
+
+  const toggleDrawer = (anchor, open) => (event) => {
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+      return;
+    }
+
+    setDrawer({ ...drawer, [anchor]: open });
+  };
 
 
   const initialFetch = async () => {
@@ -49,35 +64,49 @@ function App() {
    }
   }
 
-
   const farenheightFontColor = state.units === 'f' ? 'white-font' : 'black-font';
   const celciusFontColor = state.units === 'c' ? 'white-font' : 'black-font';
 
-  return (
-    <div>
+  const heartStyle = useMemo(() => {
+    return currentCity.current?.location && isCityFavorite(currentCity, favoriteCities) && 'red-heart';
+  }, [currentCity, favoriteCities]);
+  
 
-      <section className="display-flex flex-center">
+  return (
+    <Box className='App'>
+
+      <Drawer  
+        anchor="right"
+        open={drawer.favoriteCities} 
+        onClose={toggleDrawer('favoriteCities', false)} 
+
+      >
           <Favorites setCurrentCity={setCurrentCity} units={state.units} favoriteCities={favoriteCities} toggleFavs={toggleFavs}/>
-      </section>
+      </Drawer>
+      <Button type='button' ariaLabel='View your favorite cities' onClick={toggleDrawer('favoriteCities', true)}>Favorite cities</Button>
 
       <main>
   
         <Suspense fallback={<Loading />}>
           <Preview currentCity={currentCity} units={state.units} />
         </Suspense>
-         
-         <Form setUserSearch={setUserSearch} />
+        
+          <div className="display-flex flex-space flex-column">
+           <>
+            <Form setUserSearch={setUserSearch} />
+           </>
 
-          <div className="display-flex flex-center">
-              {/* toggle c/f */}
-              <Button 
+           <div className='display-flex flex-space gap-1rem pd-block-15rem pd-inline-15rem'>
+            {/* toggle c/f */}
+            <Button 
                 type='submit'
                 ariaLabel="Toggle degree units" 
                 onClick={()=>{dispatch({ type: 'TOGGLE_UNITS' })}} 
               >
                 <span className={farenheightFontColor}>
                   F
-                </span>/
+                </span>
+                <span>/</span>
                 <span className={celciusFontColor}>
                   C
                 </span>
@@ -89,8 +118,9 @@ function App() {
                 ariaLabel="Add To Favorite Locations" 
                 onClick={(event) => toggleFavs(currentCity, event)} 
               >
-                <IoHeartOutline />
+                <IoHeartSharp className={heartStyle}/>
               </Button>
+           </div>
 
           </div>
 
@@ -101,8 +131,7 @@ function App() {
 
         </main>
 
-
-    </div>
+    </Box>
   )
 }
 
