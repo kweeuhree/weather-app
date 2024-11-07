@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+      "target": "ESNext",             // specify ECMAScript target version
+      "module": "ESNext",             // specify module code generation 
+      "moduleResolution": "node",     // supports both ECMAScript imports and CommonJS require
+      "jsx": "react-jsx",             // use typescript to transpile jsx to js 
+      "outDir": "./dist/",            // path to output directory
+      "sourceMap": true,              // allow sourcemap support
+      "strictNullChecks": true,       // enable strict null checks as a best practice                       
+      "allowJs": true,                // allow a partial TypeScript and JavaScript codebaseff3f
+      "esModuleInterop": true,
+      "skipLibCheck": true,
+      "forceConsistentCasingInFileNames": true,
+      "checkJs": false,
+      "noEmit": true,
+      "allowImportingTsExtensions": true,
+      "typeRoots": ["./node_modules/@types", "./types"],
+
+  },
+  "include": [
+     "src/**/*.ts", "src/**/*.tsx", "vite-env.d.ts"
+ ]
+}
