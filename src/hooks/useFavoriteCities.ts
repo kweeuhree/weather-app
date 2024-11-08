@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { isCityFavorite, filterFavoriteCities } from "../utils/favoriteCitiesUtils";
-import type { City } from "../types";
+import type { City, ToggleFavsEvent } from "../types";
 
 
 export const useFavoriteCities = () => {
@@ -13,8 +13,8 @@ export const useFavoriteCities = () => {
       }
     }, []);
 
-    const toggleFavs = (city: City, event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-        event.stopPropagation();
+    const toggleFavs = (city: City, e: ToggleFavsEvent) => {
+        e.stopPropagation();
         if (!city) return;
         
         let newFavorites: City[] = [];

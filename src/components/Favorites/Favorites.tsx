@@ -1,9 +1,11 @@
+import { IoIosCloseCircleOutline } from "react-icons/io";
+
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 
 import { HeartIcon } from '../index';
-import { City } from "../../types";
+import { City, ToggleDrawerEvent, ToggleFavsEvent } from "../../types";
 
 import './favoritesStyles.css'
 
@@ -12,11 +14,12 @@ type Props = {
   setCurrentCity: (city: City) => void;
   units: number;
   favoriteCities: City[];
-  toggleFavs: (city: City, event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+  toggleFavs: (city: City, event: ToggleFavsEvent) => void;
+  toggleDrawer: (event: ToggleDrawerEvent) => void;
 }
 
 
-export const Favorites: React.FC<Props> = ({ setCurrentCity, units, favoriteCities, toggleFavs }) => {
+export const Favorites: React.FC<Props> = ({ setCurrentCity, units, favoriteCities, toggleFavs, toggleDrawer }) => {
 
   // onclick display current favorite location inside card component
   const handleClick = (city: City) => {
@@ -26,11 +29,11 @@ export const Favorites: React.FC<Props> = ({ setCurrentCity, units, favoriteCiti
   const citiesJSX = favoriteCities && favoriteCities.map((city: City, index: number) => (
     <ListItem key={index} className='chip'>
         <div onClick={()=> handleClick(city)} className="display-grid full-width">
-          <div>{city?.current?.location.name}</div> 
-          <div>{city?.current?.current[`feelslike_${units}`]}</div>
+          <div>{city.current.location.name}</div> 
+          <div>{city.current.current[`feelslike_${units}`]}</div>
         </div>
       
-        <ListItemButton onClick={(event: React.MouseEvent<HTMLDivElement, MouseEvent>)=> toggleFavs(city, event)}>
+        <ListItemButton onClick={(event) => toggleFavs(city, event)}>
           <HeartIcon />
         </ListItemButton>
     </ListItem>
@@ -47,6 +50,9 @@ export const Favorites: React.FC<Props> = ({ setCurrentCity, units, favoriteCiti
           </List>
         : (
         <div className="display-flex flex-center flex-column pd-1rem white-font full-height">
+          <div onClick={toggleDrawer}>
+            <IoIosCloseCircleOutline className="font-3rem pointer" />
+          </div>
           <strong>Your favorite cities will appear here</strong>
           <p>Click the heart icon to add cities to your favorites list.</p>
         </div>
