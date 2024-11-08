@@ -117,6 +117,11 @@ button:focus-visible {
   height: 100%;
 }
 
+/* Margins */
+.margin-b-0 {
+  margin-bottom: 0;
+}
+
 /* Paddings */
 .pd-1rem {
   padding: 1rem;
