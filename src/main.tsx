@@ -16,7 +16,7 @@ try {
       <Router>
         <StrictMode>
           <App />
-        </StrictMode>,
+        </StrictMode>
       </Router>
     );
   }
