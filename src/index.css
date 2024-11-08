@@ -1,10 +1,11 @@
 :root {
   --color-red: rgb(189, 11, 25);
-  --color-bg: rgba(68, 76, 82, 0.151);
   --color-blue: rgba(91, 164, 223, 0.5);
-  --color-box-shadow: rgba(39, 41, 40, 0.3);
+  --color-bg: rgba(68, 76, 82, 0.151);
+  --color-bg-drawer: rgba(68, 76, 82, 0.6);
   --color-bg-button: rgb(53,53,54);
   --color-degree: rgb(70, 69, 69);
+  --color-box-shadow: rgba(39, 41, 40, 0.3);
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -79,6 +80,15 @@ button:focus-visible {
 
 .font-3rem {
   font-size: 3rem;
+}
+
+.font-15rem {
+  font-size: 1.5rem;
+}
+
+/* Text alignment */
+.text-center {
+  text-align: center;
 }
 
 /* Flex Box */

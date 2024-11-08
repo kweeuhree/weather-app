@@ -30,6 +30,5 @@
 }
 
 .MuiDrawer-root .MuiPaper-root.MuiDrawer-paper  {
-  background-color: var(--color-bg);
-  color: rgb(0, 0, 0);
+  background-color: var(--color-bg-drawer);
 }

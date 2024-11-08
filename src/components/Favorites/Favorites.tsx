@@ -27,7 +27,7 @@ export const Favorites: React.FC<Props> = ({ setCurrentCity, units, favoriteCiti
   }
 
   const citiesJSX = favoriteCities && favoriteCities.map((city: City, index: number) => (
-    <ListItem key={index} className='chip'>
+    <ListItem key={index} className='chip font-15rem'>
         <div onClick={()=> handleClick(city)} className="display-grid full-width">
           <div>{city.current.location.name}</div> 
           <div>{city.current.current[`feelslike_${units}`]}</div>
@@ -54,7 +54,7 @@ export const Favorites: React.FC<Props> = ({ setCurrentCity, units, favoriteCiti
             <IoIosCloseCircleOutline className="font-3rem pointer" />
           </div>
           <strong>Your favorite cities will appear here</strong>
-          <p>Click the heart icon to add cities to your favorites list.</p>
+          <p className="text-center font-15rem">Click the heart icon to add cities to your favorites list.</p>
         </div>
         )
       }
