@@ -1,11 +1,17 @@
 import { WiDegrees } from "react-icons/wi";
+import type { City } from "../../types";
 
 
-export const Preview = ({ currentCity, units }) => {
-    if(!currentCity.current) return;
+type Props = {
+  currentCity?: City;
+  units: string;
+}
+
+const Preview: React.FC<Props> = ({ currentCity, units }) => {
+    if(!currentCity?.current?.location || !currentCity.forecast?.location) return;
 
     const { current, forecast } = currentCity;
-    const { location: { name } } = forecast;
+    const { location: { name, country } } = forecast;
 
     const { current: currentWeather } = current;
     const { condition: { icon, text }, feelslike_c, feelslike_f } = currentWeather;
@@ -15,7 +21,10 @@ export const Preview = ({ currentCity, units }) => {
   return (
     <div className="display-flex flex-center flex-column pd-block-15rem">
       
-      <h3>{name}</h3>
+      <span>
+        <h3 className="margin-b-0">{name}</h3>
+        <span>{country}</span>
+      </span>
 
       <div className="display-flex flex-center">
           
@@ -35,3 +44,5 @@ export const Preview = ({ currentCity, units }) => {
     </div>
   )
 }
+
+export default Preview;
