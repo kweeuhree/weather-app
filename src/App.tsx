@@ -1,25 +1,24 @@
 import { useState, useEffect, useReducer, useMemo, useCallback, Suspense, lazy } from 'react';
-
 import { IoHeartSharp } from "react-icons/io5";
-
 import Drawer from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
 
 import { useDrawer, useFavoriteCities } from './hooks';
 import { Favorites, Button, Form, Loading } from './components';
-
 import { 
   fetchCoordinates,
   fetchWeatherData,
   reducer, 
   isCityFavorite
 } from './utils';
-import { City } from './types';
-
-import './App.css';
+import { City, ToggleFavsEvent } from './types';
 
 const Preview = lazy(() => import('./components/Preview/Preview'));
 const Details = lazy(() => import('./components/Details/Details'));
+
+import './App.css';
+
+const getFontColor = (unit: string, stateUnit: string) => stateUnit === unit ? 'white-font' : 'black-font';
 
 
 export const App: React.FC = () => {
@@ -28,17 +27,20 @@ export const App: React.FC = () => {
   const [state, dispatch] = useReducer(reducer, {units: 'f'});
   const [currentCity, setCurrentCity] = useState<City>();
 
-  const initialFetch = async () => {
-    const { weatherData, forecastData } = await fetchCoordinates();
-    setCurrentCity({
-      current: weatherData,
-      forecast: forecastData,
-    });
-  }
-
-   // default display is user location city, fetch once
+   // default display is user location city
    useEffect(() => {
-    initialFetch();
+    const fetchData = async () => {
+      const { weatherData, forecastData } = await fetchCoordinates();
+      if (weatherData === null || forecastData === null) {
+        return;
+      }
+      setCurrentCity({
+        current: weatherData,
+        forecast: forecastData,
+      });
+    };
+  
+    fetchData();
   }, []);
 
 
@@ -49,7 +51,9 @@ export const App: React.FC = () => {
           city: searchTerm,
         });
         if (weatherData === null || forecastData === null) {
-          return;
+          await fetchWeatherData({
+            city: 'New York',
+          });
         } else {
           setCurrentCity({
             current: weatherData,
@@ -62,13 +66,20 @@ export const App: React.FC = () => {
     }, [] 
   );
 
+  const handleToggleFavs = useCallback(
+    (event: ToggleFavsEvent) => {
+      if (currentCity) {
+        toggleFavs(currentCity, event);
+      }
+    },
+    [currentCity, toggleFavs]
+  );
+
+  // Memoize style to avoid unnecessariy recalculation
   const heartStyle = useMemo(() => {
-    if(!currentCity?.current?.location) return '';
-    return isCityFavorite(currentCity, favoriteCities) ? 'red-heart' : '';
+    return currentCity && isCityFavorite(currentCity, favoriteCities) ? 'red-heart' : '';
   }, [currentCity, favoriteCities]);
   
-  const getFontColor = (unit: string) => state.units === unit ? 'white-font' : 'black-font';
-
   return (
     <Box className='App'>
 
@@ -78,7 +89,14 @@ export const App: React.FC = () => {
         onClose={toggleDrawer('favoriteCities', false)} 
 
       >
-          <Favorites setCurrentCity={setCurrentCity} units={state.units} favoriteCities={favoriteCities} toggleFavs={toggleFavs}/>
+          <Favorites 
+            setCurrentCity={setCurrentCity} 
+            units={state.units} 
+            favoriteCities={favoriteCities} 
+            toggleFavs={toggleFavs}
+            toggleDrawer={toggleDrawer('favoriteCities', false)}
+          />
+
       </Drawer>
       <Button 
         type='button'   
@@ -91,13 +109,12 @@ export const App: React.FC = () => {
       <main>
   
         <Suspense fallback={<Loading />}>
-          <Preview currentCity={currentCity} units={state.units} />
+          {currentCity && <Preview currentCity={currentCity} units={state.units} />}
         </Suspense>
         
           <div className="display-flex flex-space flex-column">
-           <>
+        
             <Form setUserSearch={setUserSearch} />
-           </>
 
            <div className='display-flex flex-space gap-1rem pd-block-15rem pd-inline-15rem'>
             {/* toggle c/f */}
@@ -106,16 +123,16 @@ export const App: React.FC = () => {
               ariaLabel="Toggle degree units"
               onClick={() => dispatch({ type: 'TOGGLE_UNITS' })}
             >
-              <span className={getFontColor('f')}>F</span>
+              <span className={getFontColor('f', state.units)}>F</span>
               <span>/</span>
-              <span className={getFontColor('c')}>C</span>
+              <span className={getFontColor('c', state.units)}>C</span>
             </Button>
 
               {/* add to favorites */}
               <Button 
                 type='submit'
                 ariaLabel="Add To Favorite Locations" 
-                onClick={currentCity ? (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => toggleFavs(currentCity, event) : undefined} 
+                onClick={handleToggleFavs} 
               >
                 <IoHeartSharp className={heartStyle}/>
               </Button>
@@ -124,10 +141,9 @@ export const App: React.FC = () => {
           </div>
 
           <Suspense fallback={<Loading />}>
-            <Details currentCity={currentCity} units={state.units} />
+            {currentCity && <Details currentCity={currentCity} units={state.units} />}
           </Suspense>
          
-
         </main>
 
     </Box>
