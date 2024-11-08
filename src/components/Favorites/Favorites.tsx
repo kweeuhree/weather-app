@@ -1,52 +1,42 @@
-import { useState } from "react";
-
-import { IoHeartOutline, IoHeartSharp  } from "react-icons/io5";
-
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
+
+import { HeartIcon } from '../index';
+import { City } from "../../types";
 
 import './favoritesStyles.css'
 
-const HeartIcon = () => {
-  const [hover, setHover] = useState(false);
-  
-  return (
-    <ListItemIcon 
-    className="display-flex flex-center" 
-    onMouseEnter={() => setHover(true)} 
-    onMouseLeave={() => setHover(false)}
-  >
-   {
-    hover 
-    ? <IoHeartOutline className="red-heart" />
-    : <IoHeartSharp className="red-heart"/>}
-  </ListItemIcon>
-  )
+
+type Props = {
+  setCurrentCity: (city: City) => void;
+  units: number;
+  favoriteCities: City[];
+  toggleFavs: (city: City, event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 }
 
 
-export const Favorites = ({ setCurrentCity, units, favoriteCities, toggleFavs }) => {
+export const Favorites: React.FC<Props> = ({ setCurrentCity, units, favoriteCities, toggleFavs }) => {
 
-// onclick display current favorite location inside card component
-const handleClick = (city) => {
-  setCurrentCity(city);
-}
+  // onclick display current favorite location inside card component
+  const handleClick = (city: City) => {
+    setCurrentCity(city);
+  }
 
-  const citiesJSX = favoriteCities.map((city, index) => (
+  const citiesJSX = favoriteCities && favoriteCities.map((city: City, index: number) => (
     <ListItem key={index} className='chip'>
         <div onClick={()=> handleClick(city)} className="display-grid full-width">
-          <div>{city.current.location.name}</div> 
-          <div>{city.current.current[`feelslike_${units}`]}</div>
+          <div>{city?.current?.location.name}</div> 
+          <div>{city?.current?.current[`feelslike_${units}`]}</div>
         </div>
       
-        <ListItemButton onClick={(event)=> toggleFavs(city, event)}>
+        <ListItemButton onClick={(event: React.MouseEvent<HTMLDivElement, MouseEvent>)=> toggleFavs(city, event)}>
           <HeartIcon />
         </ListItemButton>
     </ListItem>
     ))
 
+    
   return (
     <div className='fav-location-container full-height'>
       {
