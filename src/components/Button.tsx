@@ -1,10 +1,8 @@
-import { MouseEventHandler } from "react";
-
 type Props = {
   type: 'button' | 'submit';
   children: React.ReactNode;
   ariaLabel: string;
-  onClick?: MouseEventHandler;
+  onClick?: any;
 }
 
 export const Button: React.FC<Props> = ({ type, onClick, children, ariaLabel }) => {

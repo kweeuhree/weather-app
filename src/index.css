@@ -66,9 +66,19 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+/* Cursor */
+.pointer {
+  cursor: pointer;
+}
+
 /* Fonts */
 .font-5rem {
   font-size: 5rem;
+}
+
+.font-3rem {
+  font-size: 3rem;
 }
 
 /* Flex Box */

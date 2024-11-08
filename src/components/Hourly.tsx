@@ -2,9 +2,10 @@ import { useRef } from "react";
 
 import type { HourData } from "../types";
 
+
 type Props = {
-    hour: HourData[], 
-    units: string,
+    hour: HourData[]; 
+    units: string;
   }
   
   
@@ -23,12 +24,7 @@ export const Hourly: React.FC<Props> = ({ hour, units }) => {
           itemRefs.current[index] = el;
           // Focus the first element in the array
           if (index === 0 && el) {
-            el.focus();
-            
-            el.scrollIntoView({
-              behavior: 'smooth', 
-              block: 'center',   
-            });
+            el.focus(); 
           }
         };
   

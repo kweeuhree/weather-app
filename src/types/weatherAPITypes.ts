@@ -140,6 +140,6 @@ type WeatherCondition = {
   };
 
   export type City = {
-    current: WeatherDataType | null;
-    forecast: ForecastDataType | null;
+    current: WeatherDataType;
+    forecast: ForecastDataType;
   }
