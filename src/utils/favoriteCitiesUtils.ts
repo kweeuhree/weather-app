@@ -1,15 +1,17 @@
-export const isCityFavorite = (city, favoriteCities) => {
-  if (!city.current.location) return false;
+import type { City } from "../types";
+
+export const isCityFavorite = (city: City, favoriteCities: City[]) => {
+  if (!city?.current?.location || !favoriteCities) return false;
 
     return favoriteCities.some(
-      item => item.current.location.lat === city.current.location.lat && item.current.location.lon === city.current.location.lon
+      item => item?.current?.location.lat === city?.current?.location.lat && item?.current?.location.lon === city?.current?.location.lon
     );
   }
   
-export const filterFavoriteCities = (city, favoriteCities) => {
+export const filterFavoriteCities = (city: City, favoriteCities: City[]) => {
     return favoriteCities.filter(
       (item) =>
-        item.current.location.lat !== city.current.location.lat ||
-        item.current.location.lon !== city.current.location.lon
+        item?.current?.location.lat !== city?.current?.location.lat ||
+        item?.current?.location.lon !== city?.current?.location.lon
     );
   }
