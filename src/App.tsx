@@ -1,42 +1,32 @@
-import { useState, useEffect, useReducer, useMemo, Suspense } from 'react';
+import { useState, useEffect, useReducer, useMemo, useCallback, Suspense, lazy } from 'react';
 
 import { IoHeartSharp } from "react-icons/io5";
-import Drawer from '@mui/material/Drawer';
 
-import { Favorites, Button, Form, Preview, Details, Loading } from './components';
+import Drawer from '@mui/material/Drawer';
+import Box from '@mui/material/Box';
+
+import { useDrawer, useFavoriteCities } from './hooks';
+import { Favorites, Button, Form, Loading } from './components';
 
 import { 
   fetchCoordinates,
   fetchWeatherData,
   reducer, 
-  useFavoriteCities,
   isCityFavorite
 } from './utils';
+import { City } from './types';
 
 import './App.css';
-import { Box } from '@mui/material';
+
+const Preview = lazy(() => import('./components/Preview/Preview'));
+const Details = lazy(() => import('./components/Details/Details'));
 
 
-function App() {
+export const App: React.FC = () => {
   const { favoriteCities, toggleFavs } = useFavoriteCities();
+  const { drawer, toggleDrawer } = useDrawer();
   const [state, dispatch] = useReducer(reducer, {units: 'f'});
-  const [currentCity, setCurrentCity] = useState({
-    current: null,
-    forecast: null
-  });
-
-  const [drawer, setDrawer] = useState({
-    top: false,
-  });
-
-  const toggleDrawer = (anchor, open) => (event) => {
-    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-      return;
-    }
-
-    setDrawer({ ...drawer, [anchor]: open });
-  };
-
+  const [currentCity, setCurrentCity] = useState<City>();
 
   const initialFetch = async () => {
     const { weatherData, forecastData } = await fetchCoordinates();
@@ -52,25 +42,32 @@ function App() {
   }, []);
 
 
-  const setUserSearch = async (searchTerm) => {
-   try {
-    const { weatherData, forecastData } = await fetchWeatherData({ city: searchTerm });
-    setCurrentCity({
-      current: weatherData,
-      forecast: forecastData,
-    });
-   } catch (error) {
-    throw new Error(`Failed to set city according to user search. Error: ${error}`);
-   }
-  }
-
-  const farenheightFontColor = state.units === 'f' ? 'white-font' : 'black-font';
-  const celciusFontColor = state.units === 'c' ? 'white-font' : 'black-font';
+  const setUserSearch = useCallback(
+    async (searchTerm: string) => {
+      try {
+        const { weatherData, forecastData } = await fetchWeatherData({
+          city: searchTerm,
+        });
+        if (weatherData === null || forecastData === null) {
+          return;
+        } else {
+          setCurrentCity({
+            current: weatherData,
+            forecast: forecastData,
+          });
+        }
+      } catch (error) {
+        console.error(`Failed to set city according to user search. Error: ${error}`);
+      }
+    }, [] 
+  );
 
   const heartStyle = useMemo(() => {
-    return currentCity.current?.location && isCityFavorite(currentCity, favoriteCities) && 'red-heart';
+    if(!currentCity?.current?.location) return '';
+    return isCityFavorite(currentCity, favoriteCities) ? 'red-heart' : '';
   }, [currentCity, favoriteCities]);
   
+  const getFontColor = (unit: string) => state.units === unit ? 'white-font' : 'black-font';
 
   return (
     <Box className='App'>
@@ -83,7 +80,13 @@ function App() {
       >
           <Favorites setCurrentCity={setCurrentCity} units={state.units} favoriteCities={favoriteCities} toggleFavs={toggleFavs}/>
       </Drawer>
-      <Button type='button' ariaLabel='View your favorite cities' onClick={toggleDrawer('favoriteCities', true)}>Favorite cities</Button>
+      <Button 
+        type='button'   
+        ariaLabel='View your favorite cities' 
+        onClick={toggleDrawer('favoriteCities', true)}
+      >
+        Favorite cities
+      </Button>
 
       <main>
   
@@ -99,24 +102,20 @@ function App() {
            <div className='display-flex flex-space gap-1rem pd-block-15rem pd-inline-15rem'>
             {/* toggle c/f */}
             <Button 
-                type='submit'
-                ariaLabel="Toggle degree units" 
-                onClick={()=>{dispatch({ type: 'TOGGLE_UNITS' })}} 
-              >
-                <span className={farenheightFontColor}>
-                  F
-                </span>
-                <span>/</span>
-                <span className={celciusFontColor}>
-                  C
-                </span>
-              </Button>
+              type='submit'
+              ariaLabel="Toggle degree units"
+              onClick={() => dispatch({ type: 'TOGGLE_UNITS' })}
+            >
+              <span className={getFontColor('f')}>F</span>
+              <span>/</span>
+              <span className={getFontColor('c')}>C</span>
+            </Button>
 
               {/* add to favorites */}
               <Button 
                 type='submit'
                 ariaLabel="Add To Favorite Locations" 
-                onClick={(event) => toggleFavs(currentCity, event)} 
+                onClick={currentCity ? (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => toggleFavs(currentCity, event) : undefined} 
               >
                 <IoHeartSharp className={heartStyle}/>
               </Button>
@@ -135,4 +134,3 @@ function App() {
   )
 }
 
-export default App;
