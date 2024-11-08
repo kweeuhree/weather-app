@@ -10,7 +10,6 @@ import './detailsStyles.css';
 
 
 const dailyJSX = (day: DayForecast, units: string) => {
-
   return (
       <div className='display-flex flex-center card pd-1rem'>
         <div>         
@@ -39,13 +38,12 @@ const sunriseSunsetJSX = ({ sunrise, sunset }) => (
 
 
 type Props = {
-  currentCity?: City,
+  currentCity: City,
   units: string,
 }
 
-const Details: React.FC<Props> = ({ currentCity, units }) => {
-    if(!currentCity?.current || !currentCity?.forecast) return;
 
+const Details: React.FC<Props> = ({ currentCity, units }) => {
     const { current, forecast } = currentCity;
     const { current: currentWeather } = current;
     const { uv, wind_dir, precip_in } = currentWeather;

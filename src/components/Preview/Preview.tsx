@@ -3,12 +3,11 @@ import type { City } from "../../types";
 
 
 type Props = {
-  currentCity?: City;
+  currentCity: City;
   units: string;
 }
 
 const Preview: React.FC<Props> = ({ currentCity, units }) => {
-    if(!currentCity?.current?.location || !currentCity.forecast?.location) return;
 
     const { current, forecast } = currentCity;
     const { location: { name, country } } = forecast;
