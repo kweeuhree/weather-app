@@ -4,21 +4,27 @@ import { Button } from "../Button";
 
 import './formStyles.css';
 
-export const Form = ({ setUserSearch }) => {
+type Props = {
+  setUserSearch: (searchTerm: string) => void;
+}
 
-  const handleSubmit = (event) => {
+
+export const Form: React.FC<Props> = ({ setUserSearch }) => {
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const searchTerm = event.target.elements.namedItem('input').value;
+    const form = event.currentTarget;
+    const searchTerm = (form.elements.namedItem('input') as HTMLInputElement).value;
 
     setUserSearch(searchTerm);
     
-    event.target.reset();
+    form.reset();
   };
 
   return (
       <form className="display-flex flex-center gap-1rem" onSubmit={handleSubmit}>
           <TextField name='input' type="text" placeholder='Enter city or zip code' variant="filled"/>
-          <Button type="submit">Find</Button>
+          <Button ariaLabel='Click to find a city' type="submit">Find</Button>
        </form>
   )
 }
