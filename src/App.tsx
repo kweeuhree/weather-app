@@ -3,13 +3,13 @@ import { IoHeartSharp } from "react-icons/io5";
 import Drawer from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
 
-import { useDrawer, useFavoriteCities } from './hooks';
+import { useDrawer, useFavoriteCities, useWeatherData } from './hooks';
 import { Favorites, Button, Form, Loading } from './components';
 import { 
-  fetchCoordinates,
-  fetchWeatherData,
+  getData as fetchWeatherData,
   reducer, 
-  isCityFavorite
+  isCityFavorite,
+  getFontColor,
 } from './utils';
 import { City, ToggleFavsEvent } from './types';
 
@@ -18,48 +18,42 @@ const Details = lazy(() => import('./components/Details/Details'));
 
 import './App.css';
 
-const getFontColor = (unit: string, stateUnit: string) => stateUnit === unit ? 'white-font' : 'black-font';
-
 
 export const App: React.FC = () => {
+  const { data: weatherData, error, isFetching } = useWeatherData();
   const { favoriteCities, toggleFavs } = useFavoriteCities();
   const { drawer, toggleDrawer } = useDrawer();
   const [state, dispatch] = useReducer(reducer, {units: 'f'});
   const [currentCity, setCurrentCity] = useState<City>();
 
-   // default display is user location city
-   useEffect(() => {
-    const fetchData = async () => {
-      const { weatherData, forecastData } = await fetchCoordinates();
-      if (weatherData === null || forecastData === null) {
-        return;
-      }
+  useEffect(() => {
+    if (weatherData) {
       setCurrentCity({
-        current: weatherData,
-        forecast: forecastData,
-      });
-    };
-  
-    fetchData();
-  }, []);
+        current: weatherData.currentData,
+        forecast: weatherData.forecastData,
+      });   
+    }
+  }, [weatherData]);
 
 
   const setUserSearch = useCallback(
     async (searchTerm: string) => {
       try {
-        const { weatherData, forecastData } = await fetchWeatherData({
+        const { currentData, forecastData } = await fetchWeatherData({
           city: searchTerm,
         });
-        if (weatherData === null || forecastData === null) {
-          await fetchWeatherData({
-            city: 'New York',
-          });
+
+        // return in case of invalid input
+        if (currentData === null || forecastData === null) {
+          return;
+
         } else {
           setCurrentCity({
-            current: weatherData,
+            current: currentData,
             forecast: forecastData,
           });
         }
+
       } catch (error) {
         console.error(`Failed to set city according to user search. Error: ${error}`);
       }
@@ -77,8 +71,18 @@ export const App: React.FC = () => {
 
   // Memoize style to avoid unnecessariy recalculation
   const heartStyle = useMemo(() => {
-    return currentCity && isCityFavorite(currentCity, favoriteCities) ? 'red-heart' : '';
+    return currentCity?.current?.location && isCityFavorite(currentCity, favoriteCities) ? 'red-heart' : '';
   }, [currentCity, favoriteCities]);
+
+
+  if (isFetching) {
+    return <Loading />; 
+  }
+
+  if (error) {
+    return <div>Error loading weather data</div>;
+  }
+
   
   return (
     <Box className='App'>
@@ -109,7 +113,7 @@ export const App: React.FC = () => {
       <main>
   
         <Suspense fallback={<Loading />}>
-          {currentCity && <Preview currentCity={currentCity} units={state.units} />}
+          {currentCity?.current?.location && <Preview currentCity={currentCity} units={state.units} />}
         </Suspense>
         
           <div className="display-flex flex-space flex-column">
@@ -141,7 +145,7 @@ export const App: React.FC = () => {
           </div>
 
           <Suspense fallback={<Loading />}>
-            {currentCity && <Details currentCity={currentCity} units={state.units} />}
+            {currentCity?.current?.location && <Details currentCity={currentCity} units={state.units} />}
           </Suspense>
          
         </main>
