@@ -1,6 +1,6 @@
 export type CoordinatesResponse = {
-  weatherData: WeatherDataType | null;
-  forecastData: ForecastDataType | null;
+  currentData: CurrentDataType;
+  forecastData: ForecastDataType;
 };
 
 type WeatherCondition = {
@@ -128,7 +128,7 @@ type WeatherCondition = {
   };
 
   // exported data types
-  export type WeatherDataType = {
+  export type CurrentDataType = {
     location: LocationWeather;
     current: CurrentWeather;
   };
@@ -140,6 +140,6 @@ type WeatherCondition = {
   };
 
   export type City = {
-    current: WeatherDataType;
+    current: CurrentDataType;
     forecast: ForecastDataType;
   }
