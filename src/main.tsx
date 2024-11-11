@@ -30,7 +30,7 @@ try {
             </Suspense>
           </Router>
         </QueryClientProvider>
-      </StrictMode>,
+      </StrictMode>
     );
   }
 } catch (error) {

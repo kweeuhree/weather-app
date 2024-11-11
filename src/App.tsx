@@ -50,6 +50,7 @@ export const App: React.FC = () => {
 
       // return in case of invalid input
       if (currentData === null || forecastData === null) {
+        alert("Invalid input");
         return;
       } else {
         setCurrentCity({
@@ -59,7 +60,7 @@ export const App: React.FC = () => {
       }
     } catch (error) {
       console.error(
-        `Failed to set city according to user search. Error: ${error}`,
+        `Failed to set city according to user search. Error: ${error}`
       );
     }
   }, []);
@@ -70,7 +71,7 @@ export const App: React.FC = () => {
         toggleFavs(currentCity, event);
       }
     },
-    [currentCity, toggleFavs],
+    [currentCity, toggleFavs]
   );
 
   // Memoize style to avoid unnecessariy recalculation
