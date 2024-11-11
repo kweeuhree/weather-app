@@ -4,14 +4,6 @@
   text-align: center;
 }
 
-.white-font {
-  color: white;
-}
-
-.black-font {
-  color: var(--color-degree);
-}
-
 .App {
   display: flex;
   flex-direction: column;
@@ -28,4 +20,12 @@
 
 .MuiDrawer-root .MuiPaper-root.MuiDrawer-paper {
   background-color: var(--color-bg-drawer);
+}
+
+.white-font {
+  color: white;
+}
+
+.black-font {
+  color: var(--color-degree);
 }
