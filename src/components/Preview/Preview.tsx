@@ -31,14 +31,16 @@ const Preview: React.FC<Props> = ({ currentCity, units }) => {
               <img src={icon} alt={text} />
           </div>
 
-          <div>
+          <div className="display-flex flex-center font-2rem">
             {temperature}
+            <span className="display-flex font-3rem">
               <WiDegrees />
+            </span>
           </div>
 
       </div>
 
-      <div>{text}</div>
+      <strong>{text}</strong>
 
     </div>
   )

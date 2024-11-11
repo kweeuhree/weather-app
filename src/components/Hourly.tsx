@@ -1,5 +1,7 @@
 import { useRef } from "react";
 
+import { WiDegrees } from "react-icons/wi";
+
 import type { HourData } from "../types";
 
 
@@ -39,11 +41,14 @@ export const Hourly: React.FC<Props> = ({ hour, units }) => {
                 {displayHour < 10 && '0'}{displayHour}:00 {displayHour < 12 ? 'AM' : 'PM'}
               </div>
               
-              <em>
+              <em className="display-flex flex-center">
                {hour[displayHour][`feelslike_${units}`]}
+               <span className="display-flex font-15rem">
+                  <WiDegrees />
+                </span>
               </em>
   
-              <div>
+              <div className="font-2rem">
                 <img src={icon} alt={text} />
               </div>
             </li>

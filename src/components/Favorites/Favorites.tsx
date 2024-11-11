@@ -27,7 +27,7 @@ export const Favorites: React.FC<Props> = ({ setCurrentCity, units, favoriteCiti
   }
 
   const citiesJSX = favoriteCities && favoriteCities.map((city: City, index: number) => (
-    <ListItem key={index} className='chip font-15rem'>
+    <ListItem key={index} className='chip pointer font-15rem'>
         <div onClick={()=> handleClick(city)} className="display-grid full-width">
           <div>{city.current.location.name}</div> 
           <div>{city.current.current[`feelslike_${units}`]}</div>

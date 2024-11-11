@@ -6,6 +6,7 @@
   --color-bg-button: rgb(53,53,54);
   --color-degree: rgb(70, 69, 69);
   --color-box-shadow: rgba(39, 41, 40, 0.3);
+      --angle: 0deg;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -74,16 +75,20 @@ button:focus-visible {
 }
 
 /* Fonts */
-.font-5rem {
-  font-size: 5rem;
+.font-15rem {
+  font-size: 1.5rem;
+}
+
+.font-2rem {
+  font-size: 2rem;
 }
 
 .font-3rem {
   font-size: 3rem;
 }
 
-.font-15rem {
-  font-size: 1.5rem;
+.font-5rem {
+  font-size: 5rem;
 }
 
 /* Text alignment */
