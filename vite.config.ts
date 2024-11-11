@@ -1,15 +1,15 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
   server: {
-    port : 3001,
+    port: 3001,
     headers: {
-      'Cache-Control': 'no-store', // Disable caching for dev server
+      "Cache-Control": "no-store", // Disable caching for dev server
     },
   },
   build: {
-    outDir: 'dist'
-  }
+    outDir: "dist",
+  },
 });

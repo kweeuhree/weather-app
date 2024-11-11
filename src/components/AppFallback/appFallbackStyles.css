@@ -1,9 +1,13 @@
 .spinner {
-    box-shadow: 
-        10px 10px 5px 0px rgba(240, 99, 84, 0.1),
-        10px 10px 70px 0px rgba(255, 255, 255, 0.15);
-    border: 5px solid transparent;
-    border-image-slice: 1; 
-    border-image: linear-gradient(90deg, #733ad58f, rgba(241, 81, 63, 0.705)) 1;
-    background: linear-gradient(90deg, rgba(233, 111, 97, 0.1), rgba(197, 134, 127, 0.1));
+  box-shadow:
+    10px 10px 5px 0px rgba(240, 99, 84, 0.1),
+    10px 10px 70px 0px rgba(255, 255, 255, 0.15);
+  border: 5px solid transparent;
+  border-image-slice: 1;
+  border-image: linear-gradient(90deg, #733ad58f, rgba(241, 81, 63, 0.705)) 1;
+  background: linear-gradient(
+    90deg,
+    rgba(233, 111, 97, 0.1),
+    rgba(197, 134, 127, 0.1)
+  );
 }

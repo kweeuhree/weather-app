@@ -1,5 +1,5 @@
-import { useSuspenseQuery } from '@tanstack/react-query';
-import { fetchCoordinates } from '../utils';
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { fetchCoordinates } from "../utils";
 
 /**
  * This hook uses the `useSuspenseQuery` from React Query.
@@ -7,7 +7,7 @@ import { fetchCoordinates } from '../utils';
  */
 export function useWeatherData() {
   return useSuspenseQuery({
-    queryKey: ['weatherData'],  
-    queryFn: () => fetchCoordinates(),     
-})
+    queryKey: ["weatherData"],
+    queryFn: () => fetchCoordinates(),
+  });
 }

@@ -3,15 +3,20 @@
   --color-blue: rgba(91, 164, 223, 0.5);
   --color-bg: rgba(68, 76, 82, 0.151);
   --color-bg-drawer: rgba(68, 76, 82, 0.6);
-  --color-bg-button: rgb(53,53,54);
+  --color-bg-button: rgb(53, 53, 54);
   --color-degree: rgb(70, 69, 69);
   --color-box-shadow: rgba(39, 41, 40, 0.3);
-      --angle: 0deg;
+  --angle: 0deg;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
   color: white;
-  background: linear-gradient(45deg, rgba(2,0,36,0.6) 0%, rgba(9,9,121,0.6) 35%, rgba(0,140,255,0.6) 100%);
+  background: linear-gradient(
+    45deg,
+    rgba(2, 0, 36, 0.6) 0%,
+    rgba(9, 9, 121, 0.6) 35%,
+    rgba(0, 140, 255, 0.6) 100%
+  );
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -23,7 +28,7 @@ body {
   display: flex;
   place-items: center;
   min-width: 320px;
-  min-height: 100vh; 
+  min-height: 100vh;
 }
 
 a {
@@ -44,7 +49,11 @@ button {
   font-family: inherit;
   background: var(--color-bg-button);
   color: white;
-  background: linear-gradient(146deg, rgba(53,53,54,0.26) 0%, rgba(239,244,255,0.1) 98%);
+  background: linear-gradient(
+    146deg,
+    rgba(53, 53, 54, 0.26) 0%,
+    rgba(239, 244, 255, 0.1) 98%
+  );
   cursor: pointer;
   transition: border-color 0.25s;
 }

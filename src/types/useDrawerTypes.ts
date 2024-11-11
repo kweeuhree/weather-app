@@ -1,20 +1,19 @@
-import type { MouseEvent, KeyboardEvent } from "react"
+import type { MouseEvent, KeyboardEvent } from "react";
 
-type DrawerDisplay = 'favoriteCities';
+type DrawerDisplay = "favoriteCities";
 
 export type DrawerState = {
-    [key in DrawerDisplay]: boolean;
-  };
-
+  [key in DrawerDisplay]: boolean;
+};
 
 export type ToggleDrawerEvent = MouseEvent | KeyboardEvent;
 
-export type ToggleFavsEvent = 
-  | MouseEvent<HTMLDivElement>   
-  | KeyboardEvent<Element>      
-  | PointerEvent                
-  
+export type ToggleFavsEvent =
+  | MouseEvent<HTMLDivElement>
+  | KeyboardEvent<Element>
+  | PointerEvent;
+
 export type ToggleDrawer = (
-    anchor: DrawerDisplay,
-    open: boolean
-  ) => (event: ToggleDrawerEvent) => void;
+  anchor: DrawerDisplay,
+  open: boolean,
+) => (event: ToggleDrawerEvent) => void;
