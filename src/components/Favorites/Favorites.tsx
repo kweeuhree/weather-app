@@ -59,9 +59,10 @@ export const Favorites: React.FC<Props> = ({
             <IoIosCloseCircleOutline className="font-3rem pointer" />
           </div>
           <strong>Your favorite cities will appear here</strong>
-          <p className="text-center font-15rem">
-            Click the heart icon to add cities to your favorites list.
-          </p>
+          <div className="display-flex flex-column flex-space full-width font-15rem">
+            <div>Click the heart icon</div>
+            <div>to add cities to your favorites list.</div>
+          </div>
         </div>
       )}
     </div>
