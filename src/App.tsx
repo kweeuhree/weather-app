@@ -26,6 +26,17 @@ const Details = lazy(() => import("./components/Details/Details"));
 
 import "./App.css";
 
+const drawerStyles = {
+  width: {
+    xs: "80%",
+    sm: "50%",
+    md: "30%",
+  },
+  maxWidth: "100%",
+  height: "100%",
+  transition: "width 0.3s ease-in-out",
+};
+
 export const App: React.FC = () => {
   const { data: weatherData, error, isFetching } = useWeatherData();
   const { favoriteCities, toggleFavs } = useFavoriteCities();
@@ -96,6 +107,7 @@ export const App: React.FC = () => {
         anchor="right"
         open={drawer.favoriteCities}
         onClose={toggleDrawer("favoriteCities", false)}
+        sx={{ "& .MuiDrawer-paper": drawerStyles }}
       >
         <Favorites
           setCurrentCity={setCurrentCity}
