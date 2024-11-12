@@ -74,3 +74,7 @@ The app will be available at `http://localhost:3000` by default.
 ## Deployment
 
 The app is automatically deployed to Netlify via GitHub CI/CD integration. Each commit to the main branch triggers a new deployment.
+
+## Screenshot
+![Screenshot 2024-11-08 101255](https://github.com/user-attachments/assets/09c708bd-5875-441b-a45a-1a1b2d65fc71)
+
