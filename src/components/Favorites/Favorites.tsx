@@ -24,7 +24,6 @@ export const Favorites: React.FC<Props> = ({
   toggleFavs,
   toggleDrawer,
 }) => {
-  // onclick display current favorite location inside card component
   const handleClick = (city: City) => {
     setCurrentCity(city);
   };

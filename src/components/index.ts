@@ -1,5 +1,6 @@
 export * from "./Button";
 export * from "./Favorites/Favorites";
+export * from "./FavoritesDrawer";
 export * from "./Form/Form";
 export * from "./Preview/Preview";
 export * from "./Details/Details";

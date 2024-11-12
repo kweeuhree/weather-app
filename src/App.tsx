@@ -8,11 +8,11 @@ import {
   lazy,
 } from "react";
 import { IoHeartSharp } from "react-icons/io5";
-import Drawer from "@mui/material/Drawer";
+
 import Box from "@mui/material/Box";
 
-import { useDrawer, useFavoriteCities, useWeatherData } from "./hooks";
-import { Favorites, Button, Form, Loading } from "./components";
+import { useFavoriteCities, useWeatherData } from "./hooks";
+import { Button, Form, Loading, FavoritesDrawer } from "./components";
 import {
   getData as fetchWeatherData,
   reducer,
@@ -26,21 +26,9 @@ const Details = lazy(() => import("./components/Details/Details"));
 
 import "./App.css";
 
-const drawerStyles = {
-  width: {
-    xs: "80%",
-    sm: "50%",
-    md: "30%",
-  },
-  maxWidth: "100%",
-  height: "100%",
-  transition: "width 0.3s ease-in-out",
-};
-
 export const App: React.FC = () => {
   const { data: weatherData, error, isFetching } = useWeatherData();
   const { favoriteCities, toggleFavs } = useFavoriteCities();
-  const { drawer, toggleDrawer } = useDrawer();
   const [state, dispatch] = useReducer(reducer, { units: "f" });
   const [currentCity, setCurrentCity] = useState<City>();
 
@@ -101,29 +89,16 @@ export const App: React.FC = () => {
     return <div>Error loading weather data</div>;
   }
 
+  const drawerProps = {
+    setCurrentCity,
+    units: state.units,
+    favoriteCities,
+    toggleFavs,
+  };
+
   return (
     <Box className="App">
-      <Drawer
-        anchor="right"
-        open={drawer.favoriteCities}
-        onClose={toggleDrawer("favoriteCities", false)}
-        sx={{ "& .MuiDrawer-paper": drawerStyles }}
-      >
-        <Favorites
-          setCurrentCity={setCurrentCity}
-          units={state.units}
-          favoriteCities={favoriteCities}
-          toggleFavs={toggleFavs}
-          toggleDrawer={toggleDrawer("favoriteCities", false)}
-        />
-      </Drawer>
-      <Button
-        type="button"
-        ariaLabel="View your favorite cities"
-        onClick={toggleDrawer("favoriteCities", true)}
-      >
-        Favorite cities
-      </Button>
+      <FavoritesDrawer {...drawerProps} />
 
       <main>
         <Suspense fallback={<Loading />}>
