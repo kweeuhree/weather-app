@@ -1,5 +1,11 @@
-import { GiSunrise, GiSunset } from "react-icons/gi";
-import { WiHot, WiRaindrops, WiWindy, WiUmbrella } from "react-icons/wi";
+import {
+  WiHot,
+  WiRaindrops,
+  WiWindy,
+  WiUmbrella,
+  WiSunrise,
+  WiSunset,
+} from "react-icons/wi";
 
 import Grid2 from "@mui/material/Grid2";
 
@@ -25,12 +31,12 @@ const sunriseSunsetJSX = ({ sunrise, sunset }) => (
     <div className="display-flex flex-space flex-column pd-inline-15rem pd-block-15rem">
       <div>Rise: {sunrise}</div>
       <span className="font-5rem">
-        <GiSunrise />
+        <WiSunrise />
       </span>
     </div>
     <div className="display-flex flex-space flex-column pd-inline-15rem pd-block-15rem">
       <span className="font-5rem">
-        <GiSunset />
+        <WiSunset />
       </span>
       <div>Set: {sunset}</div>
     </div>
@@ -102,7 +108,7 @@ const Details: React.FC<Props> = ({ currentCity, units }) => {
                 <Icon />
               </span>
             </div>
-          ),
+          )
         )}
       </div>
     </div>

@@ -1,4 +1,4 @@
-import { IoIosCloseCircleOutline } from "react-icons/io";
+import { IoCloseCircleOutline } from "react-icons/io5";
 
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -56,7 +56,7 @@ export const Favorites: React.FC<Props> = ({
       ) : (
         <div className="display-flex flex-center flex-column pd-1rem white-font full-height">
           <div onClick={toggleDrawer}>
-            <IoIosCloseCircleOutline className="font-3rem pointer" />
+            <IoCloseCircleOutline className="font-3rem pointer" />
           </div>
           <strong>Your favorite cities will appear here</strong>
           <div className="display-flex flex-column flex-space full-width font-15rem">
