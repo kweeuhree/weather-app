@@ -16,7 +16,7 @@ export const forecastUrl = `https://api.weatherapi.com/v1//forecast.json`;
 /**
  * Fetches weather data from the specified URL and parses the response.
  */
-const fetchWeatherData = async (url: string) => {
+export const fetchWeatherData = async (url: string) => {
   try {
     const response = await fetch(url);
     const data = await response.json();
@@ -26,7 +26,7 @@ const fetchWeatherData = async (url: string) => {
     return null;
   } catch (error) {
     console.log(
-      `Error fetching weather data: ${error.message ? error.message : error}`,
+      `Error fetching weather data: ${error.message ? error.message : error}`
     );
   }
 };
@@ -37,7 +37,7 @@ const fetchWeatherData = async (url: string) => {
  * - If two arguments are provided, it assumes the location is specified by latitude and longitude.
  * - If one argument is provided, it assumes the location is specified by the city name.
  */
-const getFetchUrl = async (url: string, ...args: string[]) => {
+export const getFetchUrl = async (url: string, ...args: string[]) => {
   let fetchAllUrl = "";
   const [arg1, arg2] = args;
 
@@ -64,10 +64,10 @@ export const getData = async (location: { [key: string]: string }) => {
   const args = lat && lon ? [lat, lon] : [city];
 
   const currentData = await getFetchUrl(baseUrl, ...args).then(
-    fetchWeatherData,
+    fetchWeatherData
   );
   const forecastData = await getFetchUrl(forecastUrl, ...args).then(
-    fetchWeatherData,
+    fetchWeatherData
   );
 
   return { currentData, forecastData };
