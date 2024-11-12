@@ -14,8 +14,8 @@
     "checkJs": false,
     "noEmit": true,
     "allowImportingTsExtensions": true,
-    "typeRoots": ["./node_modules/@types", "./types"],
-    "types": ["vite/client", "vitest"]
+    "typeRoots": ["./node_modules/@types", "./types"]
+    // "types": ["vitest"]
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "vite-env.d.ts"]
 }
